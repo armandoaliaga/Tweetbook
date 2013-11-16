@@ -25,15 +25,15 @@
             </div>
           </div>
           <div class="form-group">
-              <label for="inputPassword" class="col-lg-3 control-label">Contrase&ntilde;a</label>
+              <label for="inputPassword" class="col-lg-3 control-label">Contraseña</label>
             <div class="col-lg-9">
-                <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Contrase&ntilde;a" required>           
+                <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Contraseña" required>           
             </div>
           </div>  
            <div class="form-group">
-              <label for="inputPassword" class="col-lg-3 control-label">Contrase&ntilde;a de confirmacion</label>
+              <label for="inputPassword" class="col-lg-3 control-label">Contraseña de confirmacion</label>
             <div class="col-lg-9">
-                <input type="password" name="passwordconfirmation" class="form-control" id="inputPassword" placeholder="Contrase&ntilde;a de confirmacion" required>           
+                <input type="password" name="passwordconfirmation" class="form-control" id="inputPassword" placeholder="Contraseña de confirmacion" required>           
             </div>
           </div>  
           <div class="form-group">
