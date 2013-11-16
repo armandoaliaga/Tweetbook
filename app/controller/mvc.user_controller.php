@@ -73,16 +73,30 @@ class user_cotroller
             $this->view_page($pagina);*/
         header("Location: index.php");
     }
-    function saveUser($datos)
+    function saveUser($datos,$password_confirmation)
     {
-        $usuario=User::create($datos);
+        $usuario = new User($datos);
+        if($datos["password"]==$password_confirmation)
+        {
+            $key_value ="KEYVALUE";
+            $usuario->password = mcrypt_ecb(MCRYPT_DES, $key_value, $datos["password"], MCRYPT_ENCRYPT); 
+            $usuario->save();
+            if($usuario->is_valid())
+            {
+                $_SESSION['success']="tu registro fue realizado correctamente!";
+            }     
+        }
+        else
+        {
+            $_SESSION['error_passwords']="Las contraseñas no coinciden!";
+        }
         ob_start();  
         $pagina=$this->load_template();
         //$register = $this->load_page('app/views/default/modules/m.register.php');
         include 'app/views/default/modules/m.register.php';
          $register = ob_get_clean();  
         $pagina = $this->replace_content('/\#CONTENIDO\#/ms', $register , $pagina);          
-        $this->view_page($pagina);                                
+        $this->view_page($pagina);   
          /* ob_start();         
            $tsArray = User::last();
             if($tsArray!=''){//si existen registros carga el modulo en memoria y rellena con los datos             

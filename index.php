@@ -33,18 +33,7 @@
  }*/
  else if( isset($_POST['username']) && isset($_POST['password']) )
  {
-     if($_POST["password"]==$_POST["passwordconfirmation"])
-     {
-        $key_value = "KEYVALUE"; 
-        $plain_text = $_POST["password"]; 
-        $passenc= mcrypt_ecb(MCRYPT_DES, $key_value, $plain_text, MCRYPT_ENCRYPT); 
-        $mvc_user->saveUser(array('name'=>$_POST['name'],'last_name'=>$_POST['last_name'], 'username'=> $_POST['username'],'password'=>  $passenc,'email'=>$_POST['email'], 'gender'=>$_POST['gender'],'city'=>$_POST['city'],'relationship_status'=>$_POST['relationship'],'birthday'=>$_POST['birthday'],'status'=>'f'));
-     }
-     else
-     {
-         echo "no coincide";
-     }
-         
+        $mvc_user->saveUser(array('name'=>$_POST['name'],'last_name'=>$_POST['last_name'], 'username'=> $_POST['username'],'password'=>  $_POST["password"],'email'=>$_POST['email'], 'gender'=>$_POST['gender'],'city'=>$_POST['city'],'relationship_status'=>$_POST['relationship'],'birthday'=>$_POST['birthday'],'status'=>'f'),$_POST['passwordconfirmation']);     
  }
  else //Si no existe GET o POST -> muestra la pagina principal
  {     

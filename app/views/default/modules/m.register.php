@@ -26,6 +26,40 @@ if (isset($_SESSION["autentificado"]) && $_SESSION["autentificado"] == "SI") {
 	exit();
 }
 ?>
+<?php
+//mostrar mensaje de success al registro
+if(isset($_SESSION['success']))
+{
+?>
+<div class="row">
+    <div class="col-lg-8">
+        <div class="alert alert-dismissable alert-success">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          <strong>Exito!</strong> <?php echo $_SESSION['success']; ?>
+        </div>
+      </div>
+</div>
+<?php
+ unset($_SESSION['success']);
+}
+?>
+<?php
+//mostrar mensaje de error de contraseñas
+if(isset($_SESSION['error_passwords']))
+{?>
+<div class="row">
+          <div class="col-lg-8">
+            <div class="alert alert-dismissable alert-danger">
+              <button type="button" class="close" data-dismiss="alert">×</button>
+              <ul>
+                  <li><strong><?php echo $_SESSION['error_passwords']; ?></strong></li>
+              </ul>
+            </div>
+          </div>          
+        </div>
+<?php
+unset($_SESSION['error_passwords']);
+}?>
 <div class="row">
 <div class="col-lg-10">
     <div class="page-header">
