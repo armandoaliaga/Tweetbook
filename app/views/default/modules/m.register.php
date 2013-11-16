@@ -39,7 +39,7 @@
           <div class="form-group">
             <label for="inputName" class="col-lg-3 control-label">Correo</label>
             <div class="col-lg-9">
-              <input type="text" name="email" class="form-control" id="inputName" placeholder="Correo" required>
+              <input type="text" name="email" is-email class="form-control"  id="inputName" placeholder="Correo" required>
             </div>
           </div>
           <div class="form-group">
@@ -110,4 +110,8 @@
       language: 'es'
     });
   });
+  
 </script>
+<script>
+    addErrorsHandler();
+ </script>
