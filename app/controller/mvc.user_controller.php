@@ -1,7 +1,8 @@
 <?php
 require_once 'app/model/php-activerecord/ActiveRecord.php';
 require('config/database.php');
-require('app/model/user.class.php');
+require('app/model/user.php');
+require('app/model/post.php');
 
 ActiveRecord\Config::initialize(function($cfg)
 {
@@ -31,6 +32,7 @@ class user_cotroller
             session_start();
             $_SESSION["autentificado"]= "SI";
             $_SESSION["current_user"]=$usuario[0];
+             $status=  Post::find('all', array('order' => 'created_at desc'));   
             $pagina=$this->load_template();
             ob_start();                                          
             include 'app/views/default/modules/m.principal.php';            
@@ -46,6 +48,7 @@ class user_cotroller
                session_start();
                $_SESSION["autentificado"]= "SI";              
                $_SESSION["current_user"]=$usuario[0];
+                $status=  Post::find('all', array('order' => 'created_at desc'));   
                $pagina=$this->load_template();
                ob_start();                                          
                include 'app/views/default/modules/m.principal.php';            
@@ -121,7 +124,8 @@ class user_cotroller
             }
         $this->view_page($pagina);  */    
         ob_start();         
-        $pagina=$this->load_template();                               
+        $pagina=$this->load_template();
+        $status=  Post::find_all_by_to_user_id($_SESSION["current_user"]->id, array('order' => 'created_at desc'));
         include 'app/views/default/modules/m.userprofile.php';
         $table = ob_get_clean();          
         $pagina = $this->replace_content('/\#CONTENIDO\#/ms', $table , $pagina);           
@@ -131,11 +135,21 @@ class user_cotroller
     function principal()
     {
          $pagina=$this->load_template();
-          ob_start();          
-          include 'app/views/default/modules/m.principal.php';            
+          ob_start();         
+           $status=  Post::find('all', array('order' => 'created_at desc'));        
+          include 'app/views/default/modules/m.principal.php';                               
           $table = ob_get_clean();
          $pagina = $this->replace_content('/\#CONTENIDO\#/ms', $table , $pagina);              
-         $this->view_page($pagina);
+         $this->view_page($pagina);       
+    }
+    
+    function save_post($content)
+    {      
+        session_start();
+        $id=$_SESSION["current_user"]->id;
+         $post=new Post(array('content'=>$content,'from_user_id'=>$id,'to_user_id'=>$id));
+         $post->save();
+         header("Location: index.php?action=principal");      
     }
 
 

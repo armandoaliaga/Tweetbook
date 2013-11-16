@@ -2,8 +2,9 @@
 
 class User extends ActiveRecord\Model
 {	
-
-	// must have a name and a state
+        static $has_many = array(
+      array('posts')
+      );
 	static $validates_presence_of = array(
 		array('name'), array('username'), array('password'), array('email'), array('gender'));
         

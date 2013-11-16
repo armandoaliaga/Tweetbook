@@ -23,14 +23,10 @@
  {
    $mvc_user->principal();
  }
-/* else if(isset ($_GET['action']) && $_GET['action'] == 'history' ) //muestra el modulo "historia de Bolivia"
+ else if( isset($_POST['content']))
  {
-   $mvc->historia();
+     $mvc_user->save_post($_POST['content']);
  }
- else if( isset($_POST['carrera']) && isset($_POST['cantidad']) )//muestra el buscador y los resultados
- {
-   $mvc->buscar( $_POST['carrera'], $_POST['cantidad'] );
- }*/
  else if( isset($_POST['username']) && isset($_POST['password']) )
  {
         $mvc_user->saveUser(array('name'=>$_POST['name'],'last_name'=>$_POST['last_name'], 'username'=> $_POST['username'],'password'=>  $_POST["password"],'email'=>$_POST['email'], 'gender'=>$_POST['gender'],'city'=>$_POST['city'],'relationship_status'=>$_POST['relationship'],'birthday'=>$_POST['birthday'],'status'=>'f'),$_POST['passwordconfirmation']);     

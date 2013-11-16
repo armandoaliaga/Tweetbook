@@ -1,4 +1,44 @@
 <?php
 include ("app/controller/mvc.security.php");
 ?>
-<h1>Aca deben estar los post de tus amigos</h1>
+<div class="row" style="margin-top: 20px;">
+    <div class="col-lg-8">
+        <div class="panel panel-primary " style="border-color: #121212;" >
+            <div class="panel-heading" style="background-color: #121212; border-color: #121212;">Estado...</div>
+            <div class="panel-body">
+                <form method="post" action="index.php">
+                    <div class="form-group" >
+                        <textarea name ="content" class="form-control" rows="4" id="textArea" placeholder="Contenido..." required maxlength="250" style="resize: none;"></textarea>                    
+                  </div>                         
+                  <button type="submit" class="btn btn-primary pull-right">Publicar</button>
+                </form>
+             </div>
+    </div>
+    </div>
+  </div>
+
+<?php
+foreach ($status as $post) {
+    $usuario=User::find_by_id($post->from_user_id);
+       $email = $usuario->email;                            
+        $size = 50;
+        $grav_url = "http://www.gravatar.com/avatar/".md5(strtolower( trim( $email ) ) ) . "?d=monsterid&s=" . $size;        
+    ?>
+<div class="row">
+    <div class=" col-lg-8">
+    <div class="panel panel-default">
+        <div class="panel-heading"><img src="<?php echo $grav_url; ?>"/>&nbsp;&nbsp;&nbsp;<?php echo "<label style='font-size:20px;'>".$usuario->username."</label>"?></div>
+        <div class="panel-body">                        
+            <div class="row">
+            <span style="margin-left: 15px; font-size: 19px;"><?php echo $post->content; ?></span>
+            </div>
+            <div class="row">
+                <small style="margin-left: 15px; font-size: 10px; color: grey;"><?php echo $post->created_at->format("d-m-Y H:i:s"); ?></small>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+<?php
+}
+?>

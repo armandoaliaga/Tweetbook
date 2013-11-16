@@ -12,8 +12,8 @@
 <a href="https://es.gravatar.com" target="_blank" id="changephoto" data-toggle="tooltip" data-placement="left" title="" data-original-title="Cambiar imagen"><img src="<?php echo $grav_url; ?>" style="margin-top: 15px;"/></a>
     <div class="bs-example" style="margin-top: 20px;">
               <ul class="nav nav-pills nav-stacked" style="max-width: 300px;">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">Profile</a></li>                
+                <li class="active"><a href="index.php?action=principal">Home</a></li>
+                <li><a href="index.php?action=userprofile">Profile</a></li>                
               </ul>
     </div>
 
