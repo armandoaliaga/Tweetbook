@@ -74,9 +74,12 @@ class user_cotroller
     function saveUser($datos)
     {
         $usuario=User::create($datos);
-        $pagina=$this->load_template('Registro de Usuario');
-        $register = $this->load_page('app/views/default/modules/m.register.php');                        
-        $pagina = $this->replace_content('/\#CONTENIDO\#/ms', $register , $pagina);  
+        ob_start();  
+        $pagina=$this->load_template();
+        //$register = $this->load_page('app/views/default/modules/m.register.php');
+        include 'app/views/default/modules/m.register.php';
+         $register = ob_get_clean();  
+        $pagina = $this->replace_content('/\#CONTENIDO\#/ms', $register , $pagina);          
         $this->view_page($pagina);                                
          /* ob_start();         
            $tsArray = User::last();

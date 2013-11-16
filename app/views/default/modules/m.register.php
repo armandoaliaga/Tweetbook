@@ -2,7 +2,23 @@
  {
 session_start();
  }
-//COMPRUEBA QUE EL USUARIO ESTA AUTENTIFICADO
+ if(isset($usuario->errors)){
+    
+     foreach ($usuario->errors as $key ) {
+         ?>
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="alert alert-dismissable alert-danger">
+              <button type="button" class="close" data-dismiss="alert">×</button>
+              <ul>
+                  <li><strong><?php echo $key."<br>"; ?></strong></li>
+              </ul>
+            </div>
+          </div>          
+        </div>
+        
+<?php     }    
+ }
 if (isset($_SESSION["autentificado"]) && $_SESSION["autentificado"] == "SI") {
 	//si no existe, envio a la página de autentificacion
 	header("Location: index.php?action=principal");
