@@ -36,7 +36,7 @@ foreach ($status as $post) {
             <span style="margin-left: 15px; font-size: 19px;"><?php echo $post->content; ?></span>
             </div>
             <div class="row">
-            <small style="margin-left: 15px; font-size: 10px; color: grey;"><?php echo $post->created_at->format("d-m-Y H:i:s"); ?></small>
+            <small style="margin-left: 15px; font-size: 10px; color: grey;"><?php echo $post->created_at->setTimezone(new DateTimezone('BOT'))->format("d-m-Y H:i:s"); ?></small>
             </div>
         </div>
       </div>
