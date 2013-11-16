@@ -5,6 +5,7 @@
      //se instancia al controlador 
 	 //comentario de prueba
 // $mvc = new mvc_controller();
+ //pruebacomentario
  $mvc_user=new user_cotroller();
  if( isset($_POST['usernameoremail']) && isset($_POST['password']) )
  {
