@@ -1,3 +1,8 @@
+<?php 
+if(!isset($_SESSION))
+ {
+session_start();
+ }?>
 <div>
  <div class="navbar navbar-default navbar-fixed-top">
      <div class="container">
@@ -23,10 +28,16 @@
                         <li><button class="btn btn-primary" style="margin-left: 5px; margin-top: 1px; " href="#">Buscar</button></li>    
                     </ul>
                      <ul class="nav navbar-nav navbar-right">
-                     <li><a href="#">Perfil</a></li>
-                    <li><a href="#">Inicio</a></li>
+                     <li><a href="index.php?action=userprofile">Perfil</a></li>
+                    <li><a href="index.php?action=principal">Inicio</a></li>
                     <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                        <?php 
+                            $email = $_SESSION["current_user"]->email;                            
+                            $size = 19;
+                            $grav_url = "http://www.gravatar.com/avatar/".md5(strtolower( trim( $email ) ) ) . "?d=monsterid&s=" . $size;
+                        ?>
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="<?php echo $grav_url; ?>"/>
+<?php echo $_SESSION["current_user"]->username;?> <b class="caret"></b></a>
                       <ul class="dropdown-menu">
                         <li><a href="#">Action</a></li>
                         <li><a href="#">Another action</a></li>
