@@ -53,7 +53,9 @@ class user_cotroller
                $pagina = $this->replace_content('/\#CONTENIDO\#/ms', $table , $pagina);            
                $this->view_page($pagina);   
             } 
-            else {              
+            else {    
+                session_start();
+                $_SESSION["error_login"]= "El nombre de usuario o la conotraseña son incorrectos!";
                 header("Location: index.php");
             }
          }

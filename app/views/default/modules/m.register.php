@@ -143,3 +143,11 @@ if (isset($_SESSION["autentificado"]) && $_SESSION["autentificado"] == "SI") {
 <script>
     addErrorsHandler();
  </script>
+<?php
+if (isset($_SESSION["error_login"]))
+{
+    $error=$_SESSION["error_login"];
+    echo "<script language='JavaScript'> alert('$error');</script>";    
+    unset($_SESSION["error_login"]);
+}
+?>
