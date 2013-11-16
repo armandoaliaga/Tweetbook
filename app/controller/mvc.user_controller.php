@@ -27,24 +27,31 @@ class user_cotroller
 	 $passenc= mcrypt_ecb(MCRYPT_DES, $key_value, $password, MCRYPT_ENCRYPT);          
          $usuario = User::find_all_by_username_and_password($usernameoremail,$passenc);
          if($usuario)
-         { 
-            
+         {            
             session_start();
-            $_SESSION["autentificado"]= "SI";     
+            $_SESSION["autentificado"]= "SI";
+            $_SESSION["current_user"]=$usuario[0];
             $pagina=$this->load_template();
             ob_start();                                          
             include 'app/views/default/modules/m.register.php';            
             $table = ob_get_clean();
             $pagina = $this->replace_content('/\#CONTENIDO\#/ms', $table , $pagina);                
             $this->view_page($pagina);   
-         }     
-         else {
-              /*$pagina=$this->load_template();
-               ob_start();         
-              include 'app/views/default/modules/m.register.php';            
-              $table = ob_get_clean();
-             $pagina = $this->replace_content('/\#CONTENIDO\#/ms', $table , $pagina);              
-             $this->view_page($pagina); */
+         }  
+         $usuario = User::find_all_by_email_and_password($usernameoremail,$passenc);
+         if($usuario)
+         {            
+            session_start();
+            $_SESSION["autentificado"]= "SI";              
+            $_SESSION["current_user"]=$usuario[0];
+            $pagina=$this->load_template();
+            ob_start();                                          
+            include 'app/views/default/modules/m.register.php';            
+            $table = ob_get_clean();
+            $pagina = $this->replace_content('/\#CONTENIDO\#/ms', $table , $pagina);            
+            $this->view_page($pagina);   
+         } 
+         else {              
              header("Location: index.php");
          }
     }
