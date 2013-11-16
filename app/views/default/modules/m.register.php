@@ -81,9 +81,9 @@
           
           <div class="form-group">
             <label for="inputDate" class="col-lg-3 control-label">Fecha Nacimiento</label>
-            <div id="datetimepicker4" class="input-append col-lg-9">
-              <input class="form-control input-append" data-format="yyyy-MM-dd" type="text" name="birthday" style="border-top-left-radius: 4px;"></input>
-              <span class="add-on input-group-addon" style="cursor:pointer;">
+            <div id="datetimepicker4" class="input-append input-group col-lg-8">
+              <input class="form-control input-append" style="width:472px;" data-format="yyyy-MM-dd" type="text" name="birthday"></input>
+              <span class="add-on btn input-group-btn" >
                <i data-date-icon="icon-calendar icon-white">
                 </i>
               </span>

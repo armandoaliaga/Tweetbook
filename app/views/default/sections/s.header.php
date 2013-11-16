@@ -39,10 +39,10 @@
                      <?php }else{?>                     
                        <form class="navbar-form navbar-right" action="index.php" method="post">
                          <div class="form-group">
-                           <input name="usernameoremail" type="text" size="35" class="form-control col-lg-8" placeholder="Nombre de usuario o correo">    
+                           <input name="usernameoremail" type="text" style="width: 250px; margin-right: 5px;" class="form-control col-lg-8" placeholder="Nombre de usuario o correo">    
                          </div>
                          <div class="form-group">
-                            <input name="password" type="password" size="30" class="form-control col-lg-8" placeholder="Contrasenia">   
+                            <input name="password" type="password" style="width: 250px; margin-right: 10px;" size="30" class="form-control col-lg-8" placeholder="Contrasenia">   
                          </div>
                          <button type="submit" class="btn btn-primary">Ingresar</button>
                        </form>
