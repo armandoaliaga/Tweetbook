@@ -2,9 +2,9 @@
  <div class="navbar navbar-default navbar-fixed-top">
      <div class="container">
                 <div class="navbar-header">                 
-                  <a class="navbar-brand" href="#">Brand</a>
+                    <a class="navbar-brand" href="index.php" style="padding:0px;"><img src="app/views/default/images/Logo_t.png" style="height:51px;"/></a>
                 </div>
-                <ul class="nav navbar-nav">  
+                <ul class="nav navbar-nav" >  
                     <li><a href="#"></a></li>
                     <li><a href="#"></a></li> 
                     <li><a href="#"></a></li> 
