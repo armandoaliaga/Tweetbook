@@ -37,7 +37,7 @@ if (isset($_SESSION["autentificado"]) && $_SESSION["autentificado"] == "SI") {
           <div class="form-group">
             <label for="inputName" class="col-lg-3 control-label">Nombre</label>
             <div class="col-lg-9">
-              <input type="text" name="name" class="form-control" id="inputName" placeholder="Nombre" required>
+              <input type="text" name="name" cannot-be-blank class="form-control" id="inputName" placeholder="Nombre" required>
             </div>
           </div>
           <div class="form-group">
@@ -49,13 +49,13 @@ if (isset($_SESSION["autentificado"]) && $_SESSION["autentificado"] == "SI") {
           <div class="form-group">
             <label for="inputName" class="col-lg-3 control-label">Nombre de usuario</label>
             <div class="col-lg-9">
-              <input type="text" name="username" class="form-control" id="inputName" placeholder="Nombre de usuario" required>
+              <input type="text" name="username" cannot-be-blank  class="form-control" id="inputName" placeholder="Nombre de usuario" required>
             </div>
           </div>
           <div class="form-group">
               <label for="inputPassword" class="col-lg-3 control-label">Contraseña</label>
             <div class="col-lg-9">
-                <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Contraseña" required>           
+                <input type="password" name="password" cannot-be-blank class="form-control" id="inputPassword" placeholder="Contraseña" required>           
             </div>
           </div>  
            <div class="form-group">
@@ -67,7 +67,7 @@ if (isset($_SESSION["autentificado"]) && $_SESSION["autentificado"] == "SI") {
           <div class="form-group">
             <label for="inputName" class="col-lg-3 control-label">Correo</label>
             <div class="col-lg-9">
-              <input type="text" name="email" is-email class="form-control"  id="inputName" placeholder="Correo" required>
+              <input type="text" name="email" is-email cannot-be-blank  class="form-control"  id="inputName" placeholder="Correo" required>
             </div>
           </div>
           <div class="form-group">
