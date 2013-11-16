@@ -33,26 +33,29 @@ class user_cotroller
             $_SESSION["current_user"]=$usuario[0];
             $pagina=$this->load_template();
             ob_start();                                          
-            include 'app/views/default/modules/m.register.php';            
+            include 'app/views/default/modules/m.principal.php';            
             $table = ob_get_clean();
             $pagina = $this->replace_content('/\#CONTENIDO\#/ms', $table , $pagina);                
             $this->view_page($pagina);   
          }  
-         $usuario = User::find_all_by_email_and_password($usernameoremail,$passenc);
-         if($usuario)
-         {            
-            session_start();
-            $_SESSION["autentificado"]= "SI";              
-            $_SESSION["current_user"]=$usuario[0];
-            $pagina=$this->load_template();
-            ob_start();                                          
-            include 'app/views/default/modules/m.register.php';            
-            $table = ob_get_clean();
-            $pagina = $this->replace_content('/\#CONTENIDO\#/ms', $table , $pagina);            
-            $this->view_page($pagina);   
-         } 
-         else {              
-             header("Location: index.php");
+         else
+         {
+            $usuario = User::find_all_by_email_and_password($usernameoremail,$passenc);
+            if($usuario)
+            {            
+               session_start();
+               $_SESSION["autentificado"]= "SI";              
+               $_SESSION["current_user"]=$usuario[0];
+               $pagina=$this->load_template();
+               ob_start();                                          
+               include 'app/views/default/modules/m.principal.php';            
+               $table = ob_get_clean();
+               $pagina = $this->replace_content('/\#CONTENIDO\#/ms', $table , $pagina);            
+               $this->view_page($pagina);   
+            } 
+            else {              
+                header("Location: index.php");
+            }
          }
     }
     
@@ -86,22 +89,37 @@ class user_cotroller
             }
         $this->view_page($pagina);  */                      
     }
-    function showAllUsers()
+    function userprofile()
     {
+           /*ob_start();         
         $pagina=$this->load_template();
-          ob_start();         
            $tsArray = User::all();
-            if($tsArray!=''){//si existen registros carga el modulo en memoria y rellena con los datos 
-            $titulo = 'Resultado de busqueda por';
-            //carga la tabla de la seccion de VIEW
-              include 'app/views/default/modules/m.show_user.php';
+            if($tsArray!=''){//si existen registros carga el modulo en memoria y rellena con los datos                         
+            include 'app/views/default/modules/m.show_user.php';
             $table = ob_get_clean();
             //realiza el parseado 
             $pagina = $this->replace_content('/\#CONTENIDO\#/ms', $table , $pagina);
             }
-        $this->view_page($pagina);      
+        $this->view_page($pagina);  */    
+        ob_start();         
+        $pagina=$this->load_template();                               
+        include 'app/views/default/modules/m.userprofile.php';
+        $table = ob_get_clean();          
+        $pagina = $this->replace_content('/\#CONTENIDO\#/ms', $table , $pagina);           
+        $this->view_page($pagina);
     }
     
+    function principal()
+    {
+         $pagina=$this->load_template();
+          ob_start();          
+          include 'app/views/default/modules/m.principal.php';            
+          $table = ob_get_clean();
+         $pagina = $this->replace_content('/\#CONTENIDO\#/ms', $table , $pagina);              
+         $this->view_page($pagina);
+    }
+
+
     private function load_page($page)
     {
      return file_get_contents($page);

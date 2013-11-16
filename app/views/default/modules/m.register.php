@@ -1,3 +1,15 @@
+<?php if(!isset($_SESSION))
+ {
+session_start();
+ }
+//COMPRUEBA QUE EL USUARIO ESTA AUTENTIFICADO
+if (isset($_SESSION["autentificado"]) && $_SESSION["autentificado"] == "SI") {
+	//si no existe, envio a la página de autentificacion
+	header("Location: index.php?action=principal");
+	//ademas salgo de este script
+	exit();
+}
+?>
 <div class="row">
 <div class="col-lg-10">
     <div class="page-header">

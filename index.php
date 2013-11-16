@@ -13,11 +13,15 @@
  }
  else if( isset($_GET['action']) && $_GET['action'] == 'logout' ) 
  {
-   $mvc_user->logout();   
+   $mvc_user->logout();  
  }
- else if( isset($_GET['action']) && $_GET['action'] == 'showusers' ) 
+ else if( isset($_GET['action']) && $_GET['action'] == 'userprofile' ) 
  {
-   $mvc_user->showAllUsers();
+   $mvc_user->userprofile();
+ }
+ else if( isset($_GET['action']) && $_GET['action'] == 'principal' ) 
+ {
+   $mvc_user->principal();
  }
 /* else if(isset ($_GET['action']) && $_GET['action'] == 'history' ) //muestra el modulo "historia de Bolivia"
  {
