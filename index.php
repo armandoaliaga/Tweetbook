@@ -1,12 +1,13 @@
 <?php
- require 'app/controller/mvc.controller.php';
  require 'app/controller/mvc.user_controller.php';
+ require 'app/controller/mvc.post_controller.php';
 
      //se instancia al controlador 
 	 //comentario de prueba
 // $mvc = new mvc_controller();
  //pruebacomentario
  $mvc_user=new user_cotroller();
+ $mvc_post=new post_controller();
  if( isset($_POST['usernameoremail']) && isset($_POST['password']) )
  {
    $mvc_user->login($_POST['usernameoremail'],$_POST['password']);
@@ -25,7 +26,7 @@
  }
  else if( isset($_POST['content']))
  {
-     $mvc_user->save_post($_POST['content']);
+     $mvc_post->save_post($_POST['content']);
  }
  else if( isset($_POST['username']) && isset($_POST['password']) )
  {

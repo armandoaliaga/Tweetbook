@@ -3,6 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>Tweetbook+</title>
+<link rel="shortcut icon" href="app/views/default/images/favicon2.png" />
 <script type="text/javascript" src="app/views/default/js/validation-errors.js"></script>
 <script type="text/javascript" src="app/views/default/js/jquery.min.js"></script>
 <script type="text/javascript" src="app/views/default/js/bootstrap.min.js"></script>

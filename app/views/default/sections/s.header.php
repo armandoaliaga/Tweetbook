@@ -22,7 +22,7 @@ session_start();
                                                    
                     if(isset($_SESSION["autentificado"]) && $_SESSION["autentificado"] == "SI"){?>
                   <form class="navbar-form navbar-center">                       
-                    <input type="text" class="form-control col-lg-8" placeholder="Search" style="width: 40%;">                                       
+                    <input type="text" class="form-control col-lg-8" placeholder="Buscar..." style="width: 40%;">                                       
                   </form>                    
                     <ul class="nav navbar-nav navbar-center">
                         <li><button class="btn btn-primary" style="margin-left: 5px; margin-top: 1px; " href="#">Buscar</button></li>    
@@ -33,7 +33,7 @@ session_start();
                     <li class="dropdown">
                         <?php 
                             $email = $_SESSION["current_user"]->email;                            
-                            $size = 19;
+                            $size = 25;
                             $grav_url = "http://www.gravatar.com/avatar/".md5(strtolower( trim( $email ) ) ) . "?d=monsterid&s=" . $size;
                         ?>
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="<?php echo $grav_url; ?>"/>
