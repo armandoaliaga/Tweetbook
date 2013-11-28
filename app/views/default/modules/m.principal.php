@@ -3,7 +3,7 @@ include ("app/controller/mvc.security.php");
 ?>
 <LINK REL=StyleSheet HREF="app/views/default/css/focusPost.css" TYPE="text/css" MEDIA=screen>
 <div class="row" style="margin-top: 20px;">
-    <div class="col-lg-8">
+    <div class="col-lg-9">
         <div class="panel panel-primary " style="border-color: #121212;" >
             <div class="panel-heading" style="background-color: #121212; border-color: #121212;">Estado...</div>
             <div class="panel-body">
@@ -26,9 +26,9 @@ foreach ($status as $post) {
         $grav_url = "http://www.gravatar.com/avatar/".md5(strtolower( trim( $email ) ) ) . "?d=monsterid&s=" . $size;        
     ?>
 <div class="row">
-    <div class=" col-lg-8">
-        <div class="panel panel-default" style="margin: -1px;">
-        <div class="panel-heading"><img src="<?php echo $grav_url; ?>"/>&nbsp;&nbsp;&nbsp;<?php echo "<label style='font-size:20px;'>".$usuario->username."</label>"?></div>
+    <div class=" col-lg-9">
+        <div class="panel panel-default" style="margin: -1px; margin-top: 30px;">
+            <div class="panel-heading" style="background-color: #d1d1d1;"><img src="<?php echo $grav_url; ?>"/>&nbsp;&nbsp;&nbsp;<?php echo "<label style='font-size:20px;'>".$usuario->username."</label>"?></div>
         <div class="panel-body">                        
             <div class="row">
             <span style="margin-left: 15px; font-size: 19px;"><?php echo $post->content; ?></span>
@@ -38,8 +38,8 @@ foreach ($status as $post) {
             </div>
         </div>        
       </div>   
-            <div class="panel panel-default">
-              <div class="panel-body"style="margin: 0px;">
+            <div class="panel panel-default" style="margin: -1px;">
+              <div class="panel-body"style="margin: -1px;">
                   <div class="row">
                    <form method="post" action="index.php">
                         <div class="form-group col-lg-9" >
@@ -52,9 +52,34 @@ foreach ($status as $post) {
                     </form>
                       </div>
               </div>
-            </div>        
+            </div>  
+        <?php
+
+    foreach ($post->comments as $comment) {?>        
+        <div class="panel panel-default"  style="margin-bottom: -1px;">
+              <div class="panel-body" >
+                  <div class="row">                   
+                        <div class="form-group col-lg-1">
+                            
+                            <?php
+                            $email = $comment->user->email;                            
+                            $size = 40;
+                            $grav_url = "http://www.gravatar.com/avatar/".md5(strtolower( trim( $email ) ) ) . "?d=monsterid&s=" . $size;  
+                            ;?>
+                            <img src="<?php echo $grav_url?>">
+                       </div>
+                        <div class="form-group col-lg-10" >
+                            <?php echo $comment->content;?>
+                       </div>                                           
+                      </div>
+                  <div class="row">
+                <small style="margin-left: 15px; font-size: 10px; color: grey;"><?php echo $comment->created_at->setTimezone(new DateTimezone('BOT'))->format("d-m-Y H:i:s"); ?></small>
+            </div>
+              </div>
+            </div>     
+        <?php } ?>    
     </div>
 </div>
-<?php
+  <?php
 }
 ?>

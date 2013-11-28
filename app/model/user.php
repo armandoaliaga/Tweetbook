@@ -4,7 +4,8 @@ class User extends ActiveRecord\Model
 {	
         static $has_many = array(
       array('posts'),
-      array('albums')
+      array('albums'),
+            array('comments')
       );
 	static $validates_presence_of = array(
 		array('name'), array('username'), array('password'), array('email'), array('gender'));
