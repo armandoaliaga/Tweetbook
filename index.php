@@ -33,7 +33,14 @@ require 'app/controller/mvc.photo_controller.php';
         }
         else if($_GET['tab']=='photo')
         {
-            $mvc_photo->user_photos();
+            if(isset($_GET['album']))
+            {
+                $mvc_photo->user_photos_of_album($_GET['album']);
+            }
+            else
+            {
+                $mvc_photo->user_photos();
+            }
         }
     }
     else
@@ -60,6 +67,10 @@ require 'app/controller/mvc.photo_controller.php';
  else if( isset($_POST['postinfo']) && $_POST['postinfo'] == 'createalbum') 
  {
         $mvc_photo->create_album($_POST);     
+ }
+ else if( isset($_POST['postinfo']) && $_POST['postinfo'] == 'uploadphotos') 
+ {
+        $mvc_photo->upload_photos_to_album($_POST['album_id'],$_FILES);     
  }
  else if( isset($_POST['new_name']) && isset($_POST['new_last_name']) )
  {

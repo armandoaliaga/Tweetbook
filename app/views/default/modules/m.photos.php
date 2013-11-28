@@ -3,13 +3,13 @@ include ("app/controller/mvc.security.php");
 ?>
 <LINK REL=StyleSheet HREF="app/views/default/css/focusPost.css" TYPE="text/css" MEDIA=screen>
 <div class="row">
-<div class="page-header col-lg-8">
+<div class="page-header col-lg-9">
     <h1 id="type"><?php echo $_SESSION["current_user"]->name." ".$_SESSION["current_user"]->last_name ?></h1>
   </div>
 </div>
 
 <div class="row">
-<div class="bs-example col-lg-8">
+<div class="bs-example col-lg-9">
     <ul class="nav nav-tabs" style="margin-bottom: 15px;">
         <li ><a href="index.php?action=userprofile&tab=wall" >Muro</a></li>
         <li ><a href="index.php?action=userprofile&tab=info">Informacion</a></li>
@@ -47,10 +47,10 @@ include ("app/controller/mvc.security.php");
                             echo "<div class='col-lg-4 col-md-4 col-sm-4'>";
                                 echo "<div class='panel panel-default' style='height:190px; width:160px;'>";
                                     echo "<div class='panel-body'>";
-                                        echo "<div style='height:130px; width:130px;border-style:solid;border-width:1px;border-color:#DDDDDD;'>";
+                                        echo "<div style='height:127px; width:127px;border-style:solid;border-width:1px;border-color:#DDDDDD;'>";
                                         if(isset($album->photos[0]))
                                         {
-                                            echo "<a href='index.php?action=userprofile&tab=photo&album=".$album->id."'><img src='".$album->photos[0]->url()."' /></a>";
+                                            echo "<a href='index.php?action=userprofile&tab=photo&album=".$album->id."'><img style='width: 125px;height: 125px;overflow: hidden;'' src='".$album->photos[0]->url()."' /></a>";
                                         }
                                         else
                                         {
