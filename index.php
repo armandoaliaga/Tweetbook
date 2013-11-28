@@ -61,6 +61,10 @@ require 'app/controller/mvc.photo_controller.php';
  {
         $mvc_photo->create_album($_POST);     
  }
+ else if( isset($_POST['new_name']) && isset($_POST['new_last_name']) )
+ {
+        $mvc_user->editUser(array('name'=>$_POST['new_name'],'last_name'=>$_POST['new_last_name'],'gender'=>$_POST['new_gender'],'city'=>$_POST['new_city'],'relationship_status'=>$_POST['new_relationship'],'birthday'=>$_POST['new_birthday']));     
+ }
  else //Si no existe GET o POST -> muestra la pagina principal
  {     
     $mvc_user->register();  

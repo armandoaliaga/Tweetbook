@@ -118,6 +118,26 @@ class user_cotroller extends generic_controller
         $pagina = $this->replace_content('/\#CONTENIDO\#/ms', $table , $pagina);           
         $this->view_page($pagina);
     }
+    
+    function editUser($datos)
+    {
+        session_start();
+        $usuario = User::find($_SESSION["current_user"]->id);
+        $usuario->name=$datos['name'];
+        $usuario->last_name=$datos['last_name'];
+        $usuario->gender=$datos['gender'];
+        $usuario->city=$datos['city'];
+        $usuario->relationship_status=$datos['relationship_status'];
+        $usuario->birthday=$datos['birthday'];
+        $usuario->save();
+        $_SESSION["current_user"]=$usuario;
+        ob_start();  
+        $pagina=$this->load_template();       
+        include 'app/views/default/modules/m.info.php';
+        $register = ob_get_clean();  
+        $pagina = $this->replace_content('/\#CONTENIDO\#/ms', $register , $pagina);          
+        $this->view_page($pagina);  
+    }
 }
 
 ?>
