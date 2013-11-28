@@ -1,6 +1,7 @@
 <?php
 include ("app/controller/mvc.security.php");
 ?>
+<LINK REL=StyleSheet HREF="app/views/default/css/focusPost.css" TYPE="text/css" MEDIA=screen>
 <div class="page-header col-lg-8">
     <h1 id="type"><?php echo $_SESSION["current_user"]->name." ".$_SESSION["current_user"]->last_name ?></h1>
   </div>
@@ -11,8 +12,8 @@ include ("app/controller/mvc.security.php");
             <div class="panel-body">
                 <form method="post" action="index.php">
                     <div class="form-group" >
-                        <textarea name ="content" class="form-control" rows="4" id="textArea" placeholder="Contenido..." required maxlength="250" style="resize: none;"></textarea>                    
-                  </div>                         
+                        <textarea name ="content" class="form-control post" style="height:43px;" onfocus="this.style.height='130px';" onblur="this.style.height='43px';" id="textArea" placeholder="Contenido..." required maxlength="250"></textarea>                    
+                    </div>                         
                   <button type="submit" class="btn btn-primary pull-right">Publicar</button>
                 </form>
              </div>

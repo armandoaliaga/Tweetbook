@@ -9,6 +9,7 @@
 <script type="text/javascript" src="app/views/default/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="app/views/default/js/bootstrap-datetimepicker.min.js"></script>
 <script type="text/javascript" src="app/views/default/js/bootstrap-tooltip.js"></script>
+<LINK REL=StyleSheet HREF="app/views/default/css/focusPost.css" TYPE="text/css" MEDIA=screen>
 <LINK REL=StyleSheet HREF="app/views/default/css/auxDatepicker.css" TYPE="text/css" MEDIA=screen>
 <LINK REL=StyleSheet HREF="app/views/default/css/bootstrap.css" TYPE="text/css" MEDIA=screen>
 <LINK REL=StyleSheet HREF="app/views/default/css/bootstrap.min.css" TYPE="text/css" MEDIA=screen> 
