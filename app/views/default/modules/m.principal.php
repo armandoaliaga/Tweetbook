@@ -26,7 +26,7 @@ foreach ($status as $post) {
     ?>
 <div class="row">
     <div class=" col-lg-8">
-    <div class="panel panel-default">
+        <div class="panel panel-default" style="margin: 1px;">
         <div class="panel-heading"><img src="<?php echo $grav_url; ?>"/>&nbsp;&nbsp;&nbsp;<?php echo "<label style='font-size:20px;'>".$usuario->username."</label>"?></div>
         <div class="panel-body">                        
             <div class="row">
@@ -35,8 +35,19 @@ foreach ($status as $post) {
             <div class="row">
                 <small style="margin-left: 15px; font-size: 10px; color: grey;"><?php echo $post->created_at->setTimezone(new DateTimezone('BOT'))->format("d-m-Y H:i:s"); ?></small>
             </div>
-        </div>
+        </div>        
       </div>
+        <div class="panel panel-default">
+              <div class="panel-body"style="margin: 0px;">
+                   <form method="post" action="index.php">
+                        <div class="form-group" >
+                            <textarea name ="contentcomment" class="form-control" rows="4" id="textArea" placeholder="Escribe un comentario..." required maxlength="250" style="resize: none;"></textarea>                    
+                            <input type="hidden" name="postid" value="<?php echo $post->id ?>">
+                      </div>                         
+                      <button type="submit" class="btn btn-default pull-right">Comentar</button>
+                    </form>
+              </div>
+            </div>
     </div>
 </div>
 <?php
