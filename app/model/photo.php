@@ -22,7 +22,16 @@ class Photo extends ActiveRecord\Model
         $this->file_name = sha1($new_file_name.date("YmdHms")).$extension;
         $success=parent::save($validate);
         $this->upload_file();
+        return $success;
     }
+    
+    public function delete()
+    {
+        $this->delete_file();
+        $success=parent::delete();
+        return $success;
+    }
+    
     function url()
     {
         $dbxClient = new dbx\Client($this->accessToken, "Tweetbook");
@@ -36,6 +45,11 @@ class Photo extends ActiveRecord\Model
         $f = fopen($this->file_tmp_name, "rb");
         $result = $dbxClient->uploadFile("/albums/".$this->album_id."/".$this->file_name, dbx\WriteMode::add(), $f);
         fclose($f);
+    }
+    private function delete_file()
+    {
+        $dbxClient = new dbx\Client($this->accessToken, "Tweetbook");
+        $dbxClient->delete("/albums/".$this->album_id."/".$this->file_name);
     }
 }
 ?>
