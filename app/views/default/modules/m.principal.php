@@ -42,7 +42,7 @@ foreach ($status as $post) {
               <div class="panel-body"style="margin: 0px;">
                    <form method="post" action="index.php">
                         <div class="form-group" >
-                            <textarea name ="contentcomment" class="form-control" rows="4" id="textArea" placeholder="Escribe un comentario..." required maxlength="250" style="resize: none;"></textarea>                    
+                            <textarea name ="contentcomment" class="form-control post" onfocus="this.style.height='130px';" onblur="this.style.height='43px';" rows="4" id="textArea" placeholder="Escribe un comentario..." required maxlength="250" style="resize: none; height:43px;"></textarea>                    
                             <input type="hidden" name="postid" value="<?php echo $post->id ?>">
                       </div>                         
                       <button type="submit" class="btn btn-default pull-right">Comentar</button>

@@ -13,7 +13,7 @@
     <div class="bs-example" style="margin-top: 20px;">
               <ul class="nav nav-pills nav-stacked" style="max-width: 300px;">
                 <li id="home-option"><a href="index.php?action=principal">Home</a></li>
-                <li id="profile-option"><a href="index.php?action=userprofile">Profile</a></li>                
+                <li id="profile-option"><a href="index.php?action=userprofile&tab=wall">Profile</a></li>                
               </ul>
     </div>
 

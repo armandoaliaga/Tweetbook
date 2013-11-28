@@ -2,6 +2,7 @@
  require 'app/controller/mvc.user_controller.php';
  require 'app/controller/mvc.post_controller.php';
 require 'app/controller/mvc.comment_controller.php';   
+require 'app/controller/mvc.photo_controller.php';   
      //se instancia al controlador 
 	 //comentario de prueba
 // $mvc = new mvc_controller();
@@ -9,6 +10,7 @@ require 'app/controller/mvc.comment_controller.php';
  $mvc_user=new user_cotroller();
  $mvc_post=new post_controller();
  $mvc_comment=new comment_controller();
+ $mvc_photo=new photo_controller();
  if( isset($_POST['usernameoremail']) && isset($_POST['password']) )
  {
    $mvc_user->login($_POST['usernameoremail'],$_POST['password']);
@@ -18,8 +20,26 @@ require 'app/controller/mvc.comment_controller.php';
    $mvc_user->logout();  
  }
  else if( isset($_GET['action']) && $_GET['action'] == 'userprofile' ) 
- {
-   $mvc_user->userprofile();
+ {   
+    if(isset($_GET['tab']))
+    {
+        if($_GET['tab']=='wall')
+        {
+            $mvc_user->userprofile();
+        }
+        else if($_GET['tab']=='info')
+        {
+            $mvc_user->user_info();
+        }
+        else if($_GET['tab']=='photo')
+        {
+            $mvc_photo->user_photos();
+        }
+    }
+    else
+    {
+        $mvc_user->userprofile();
+    } 
  }
  else if( isset($_GET['action']) && $_GET['action'] == 'principal' ) 
  {

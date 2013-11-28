@@ -108,6 +108,16 @@ class user_cotroller extends generic_controller
          $pagina = $this->replace_content('/\#CONTENIDO\#/ms', $table , $pagina);              
          $this->view_page($pagina);       
     }
+    
+    function user_info()
+    { 
+        ob_start();         
+        $pagina=$this->load_template();        
+        include 'app/views/default/modules/m.info.php';
+        $table = ob_get_clean();          
+        $pagina = $this->replace_content('/\#CONTENIDO\#/ms', $table , $pagina);           
+        $this->view_page($pagina);
+    }
 }
 
 ?>
