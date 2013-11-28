@@ -1,6 +1,7 @@
 <?php
 include ("app/controller/mvc.security.php");
 ?>
+<LINK REL=StyleSheet HREF="app/views/default/css/focusPost.css" TYPE="text/css" MEDIA=screen>
 <div class="row" style="margin-top: 20px;">
     <div class="col-lg-8">
         <div class="panel panel-primary " style="border-color: #121212;" >
@@ -8,7 +9,7 @@ include ("app/controller/mvc.security.php");
             <div class="panel-body">
                 <form method="post" action="index.php">
                     <div class="form-group" >
-                        <textarea name ="content" class="form-control" rows="4" id="textArea" placeholder="Contenido..." required maxlength="250" style="resize: none;"></textarea>                    
+                        <textarea name ="content" class="form-control post" style="height:43px;" onfocus="this.style.height='130px';" onblur="this.style.height='43px';" id="textArea" placeholder="Contenido..." required maxlength="250"></textarea>                    
                   </div>                         
                   <button type="submit" class="btn btn-primary pull-right">Publicar</button>
                 </form>

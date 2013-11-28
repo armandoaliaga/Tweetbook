@@ -1,0 +1,11 @@
+.post{
+resize: none;	
+ -webkit-transition: height 0.25s linear;
+ -moz-transition: height 0.25s linear;
+   -o-transition: height 0.25s linear;
+      transition: height 0.25s linear;
+}
+
+.post:focus{
+
+}
