@@ -9,5 +9,12 @@
          $comment->save();
          header("Location: index.php?action=principal");      
        }
+       
+       function deletecomment($id)
+       {
+           $comment=Comment::find($id);
+           $comment->delete();
+           header("Location: index.php?action=principal"); 
+       }
     }
 ?>

@@ -45,6 +45,10 @@ require 'app/controller/mvc.photo_controller.php';
  {
    $mvc_user->principal();
  }
+ else if( isset($_GET['action']) && isset($_GET['commentid']) && $_GET['action'] == 'deletecomment') 
+ {
+    $mvc_comment->deletecomment($_GET['commentid']);
+ }
  else if( isset($_POST['content']))
  {
      $mvc_post->save_post($_POST['content']);

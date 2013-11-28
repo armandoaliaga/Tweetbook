@@ -73,7 +73,14 @@ foreach ($status as $post) {
                        </div>                                           
                       </div>
                   <div class="row">
-                <small style="margin-left: 15px; font-size: 10px; color: grey;"><?php echo $comment->created_at->setTimezone(new DateTimezone('BOT'))->format("d-m-Y H:i:s"); ?></small>
+                      <div class="col-lg-10">
+                    <small style="margin-left: 15px; font-size: 10px; color: grey;"><?php echo $comment->created_at->setTimezone(new DateTimezone('BOT'))->format("d-m-Y H:i:s"); ?></small>
+                    </div>
+                    <div class="col-lg-2">
+                        <?php if($comment->user_id == $_SESSION["current_user"]->id){?>
+                        <small><a onclick="return confirm('Esta seguro de elminar este comentario?!....')" href="index.php?action=deletecomment&commentid=<?php echo $comment->id; ?>">Eliminar</a></small>
+                    <?php }?>
+                        </div>
             </div>
               </div>
             </div>     
