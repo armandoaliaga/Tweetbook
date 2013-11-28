@@ -1,13 +1,5 @@
 <?php
 require_once "dropbox-sdk/Dropbox/autoload.php";
-require_once 'app/model/php-activerecord/ActiveRecord.php';
-require('config/database.php');
-//configuracion que debe llamarse para utilizar los controladores
-ActiveRecord\Config::initialize(function($cfg)
-{
-    $cfg->set_model_directory('app/model');
-    $cfg->set_connections(array('development' => 'mysql://'.$GLOBALS['db_user'].':'.$GLOBALS['db_password'].'@'.$GLOBALS['db_host'].'/'.$GLOBALS['db_name']));	
-});
 use \Dropbox as dbx;
 class Photo extends ActiveRecord\Model
 {	
