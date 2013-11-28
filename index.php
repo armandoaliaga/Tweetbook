@@ -57,6 +57,10 @@ require 'app/controller/mvc.photo_controller.php';
  {
         $mvc_user->saveUser(array('name'=>$_POST['name'],'last_name'=>$_POST['last_name'], 'username'=> $_POST['username'],'password'=>  $_POST["password"],'email'=>$_POST['email'], 'gender'=>$_POST['gender'],'city'=>$_POST['city'],'relationship_status'=>$_POST['relationship'],'birthday'=>$_POST['birthday'],'status'=>'f'),$_POST['passwordconfirmation']);     
  }
+ else if( isset($_POST['new_name']) && isset($_POST['new_last_name']) )
+ {
+        $mvc_user->editUser(array('name'=>$_POST['new_name'],'last_name'=>$_POST['new_last_name'],'gender'=>$_POST['new_gender'],'city'=>$_POST['new_city'],'relationship_status'=>$_POST['new_relationship'],'birthday'=>$_POST['new_birthday']));     
+ }
  else //Si no existe GET o POST -> muestra la pagina principal
  {     
     $mvc_user->register();  

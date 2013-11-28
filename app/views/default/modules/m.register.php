@@ -155,7 +155,7 @@ unset($_SESSION['error_passwords']);
           
           <div class="form-group">
             <div class="col-lg-9 col-lg-offset-3">
-              <button class="btn btn-default">Cancel</button> 
+                <button class="btn btn-default" >Cancel</button> 
               <button type="submit" class="btn btn-primary">Registrarme</button> 
             </div>
         

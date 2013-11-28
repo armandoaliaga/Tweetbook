@@ -27,7 +27,7 @@ foreach ($status as $post) {
     ?>
 <div class="row">
     <div class=" col-lg-8">
-        <div class="panel panel-default" style="margin: 1px;">
+        <div class="panel panel-default" style="margin: -1px;">
         <div class="panel-heading"><img src="<?php echo $grav_url; ?>"/>&nbsp;&nbsp;&nbsp;<?php echo "<label style='font-size:20px;'>".$usuario->username."</label>"?></div>
         <div class="panel-body">                        
             <div class="row">
