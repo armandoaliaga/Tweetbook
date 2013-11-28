@@ -37,18 +37,22 @@ foreach ($status as $post) {
                 <small style="margin-left: 15px; font-size: 10px; color: grey;"><?php echo $post->created_at->setTimezone(new DateTimezone('BOT'))->format("d-m-Y H:i:s"); ?></small>
             </div>
         </div>        
-      </div>
-        <div class="panel panel-default">
+      </div>   
+            <div class="panel panel-default">
               <div class="panel-body"style="margin: 0px;">
+                  <div class="row">
                    <form method="post" action="index.php">
-                        <div class="form-group" >
+                        <div class="form-group col-lg-9" >
                             <textarea name ="contentcomment" class="form-control post" onfocus="this.style.height='130px';" onblur="this.style.height='43px';" rows="4" id="textArea" placeholder="Escribe un comentario..." required maxlength="250" style="resize: none; height:43px;"></textarea>                    
                             <input type="hidden" name="postid" value="<?php echo $post->id ?>">
-                      </div>                         
+                      </div>
+                       <div class="col-lg-3" >
                       <button type="submit" class="btn btn-default pull-right">Comentar</button>
+                       </div>
                     </form>
+                      </div>
               </div>
-            </div>
+            </div>        
     </div>
 </div>
 <?php
