@@ -43,6 +43,7 @@ include ("app/controller/mvc.security.php");
                 <div class="row">
                 <?php
                 $cols=0;
+                $num_id=0;
                     foreach ($album->photos as $photo)
                     {
                         if($cols==0)
@@ -50,8 +51,14 @@ include ("app/controller/mvc.security.php");
                             echo "<div class='row'>";
                         }
                             echo "<div class='col-lg-4 col-md-4 col-sm-4'>";
-                                echo "<div style='height:162px; width:162px;border-style:solid;border-width:1px;border-color:#DDDDDD;margin:20px;'>";
-                                    echo "<img style='width: 160px;height: 160px;overflow: hidden;' src='".$photo->url()."' />";
+                            echo "<form method='post' name='delete".$photo->id."' action='index.php'>";
+                                echo "<input type='hidden' name='photo_id' value='".$photo->id."'/>";
+                                echo "<input type='hidden' name='album_id' value='".$album->id."'/>";
+                                echo "<input type='hidden' name='postinfo' value='deletephoto'/>";
+                            echo "</form>";
+                                echo "<div style='height:162px; width:162px;border-style:solid;border-width:1px;border-color:#DDDDDD;margin:20px;' >";
+                                    echo "<img class='image-container' onmouseover='showDelete($num_id)' onmouseout='hideDelete($num_id)' style='width: 160px;height: 160px;overflow: hidden;' src='".$photo->url()."' />";
+                                    echo"<img id='$num_id' class='star-button' onclick='deleteImage(".$photo->id.")'  onmouseover='showDelete($num_id)' title='Eliminar foto'  src='app/views/default/images/delete.png'>";
                                 echo "</div>";
                             echo "</div>";
                         if($cols==3)
@@ -60,6 +67,7 @@ include ("app/controller/mvc.security.php");
                             echo "<div>";
                         }
                         $cols=$cols+1;
+                        $num_id=$num_id+1;
                     }
                 ?>                      
                 </div>
@@ -106,3 +114,35 @@ include ("app/controller/mvc.security.php");
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+<script>
+    function showDelete(elemId)
+    {
+        elem=document.getElementById(elemId);
+        elem.style.visibility="visible";
+    }
+    function hideDelete(elemId)
+    {
+        elem=document.getElementById(elemId);
+        elem.style.visibility="hidden";
+    }
+    function deleteImage(imgId)
+    {
+        document.getElementsByName("delete"+imgId)[0].submit();
+    }
+</script>
+<STYLE>
+    .image-container {
+    display: inline-block;
+    position: relative;
+}
+
+.star-button {
+    position: absolute;    
+    right: 40px;
+    top: 26px;
+    height:25px;
+    width:25px;
+    cursor: pointer;
+    visibility:hidden;
+}
+</style>

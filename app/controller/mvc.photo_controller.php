@@ -46,5 +46,11 @@
             }
             header("Location: index.php?action=userprofile&tab=photo&album=".$album_id);
         }
+        function delete_photo($photo_id,$album_id)
+        {
+            session_start();//photo_to_upload
+            Photo::find($photo_id)->delete();
+            header("Location: index.php?action=userprofile&tab=photo&album=".$album_id);
+        }
     }
 ?>

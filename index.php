@@ -72,6 +72,10 @@ require 'app/controller/mvc.photo_controller.php';
  {
         $mvc_photo->upload_photos_to_album($_POST['album_id'],$_FILES);     
  }
+ else if( isset($_POST['postinfo']) && $_POST['postinfo'] == 'deletephoto') 
+ {
+        $mvc_photo->delete_photo($_POST['photo_id'],$_POST['album_id']);     
+ }
  else if( isset($_POST['new_name']) && isset($_POST['new_last_name']) )
  {
          $mvc_user->editUser(array('name'=>$_POST['new_name'],'last_name'=>$_POST['new_last_name'],'gender'=>$_POST['new_gender'],'city'=>$_POST['new_city'],'relationship_status'=>$_POST['new_relationship'],'birthday'=>$_POST['new_birthday']));     
