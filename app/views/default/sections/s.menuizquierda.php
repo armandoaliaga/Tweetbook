@@ -26,7 +26,7 @@
     {
         document.getElementById("home-option").className="active";
     }
-    if(currentMenu=="userprofile")
+    if(currentMenu.indexOf("userprofile")!=-1)
     {
         document.getElementById("profile-option").className="active";
     }
