@@ -3,7 +3,7 @@ include ("app/controller/mvc.security.php");
 ?>
 <LINK REL=StyleSheet HREF="app/views/default/css/focusPost.css" TYPE="text/css" MEDIA=screen>
 <div class="row" style="margin-top: 20px;">
-    <div class="col-lg-8">
+    <div class="col-lg-9">
         <div class="panel panel-primary " style="border-color: #121212;" >
             <div class="panel-heading" style="background-color: #121212; border-color: #121212;">Estado...</div>
             <div class="panel-body">
@@ -26,7 +26,7 @@ foreach ($status as $post) {
         $grav_url = "http://www.gravatar.com/avatar/".md5(strtolower( trim( $email ) ) ) . "?d=monsterid&s=" . $size;        
     ?>
 <div class="row">
-    <div class=" col-lg-8">
+    <div class=" col-lg-9">
         <div class="panel panel-default" style="margin: -1px;">
         <div class="panel-heading"><img src="<?php echo $grav_url; ?>"/>&nbsp;&nbsp;&nbsp;<?php echo "<label style='font-size:20px;'>".$usuario->username."</label>"?></div>
         <div class="panel-body">                        

@@ -3,13 +3,13 @@ include ("app/controller/mvc.security.php");
 ?>
 <LINK REL=StyleSheet HREF="app/views/default/css/focusPost.css" TYPE="text/css" MEDIA=screen>
 <div class="row">
-<div class="page-header col-lg-8">
+<div class="page-header col-lg-9">
     <h1 id="type"><?php echo $_SESSION["current_user"]->name." ".$_SESSION["current_user"]->last_name ?></h1>
   </div>
 </div>
 
 <div class="row">
-<div class="bs-example col-lg-8">
+<div class="bs-example col-lg-9">
     <ul class="nav nav-tabs" style="margin-bottom: 15px;">
         <li ><a href="index.php?action=userprofile&tab=wall" >Muro</a></li>
         <li class="active"><a href="index.php?action=userprofile&tab=info">Informacion</a></li>
@@ -33,7 +33,7 @@ include ("app/controller/mvc.security.php");
 </script>
 
 <div class="row" id="mostrar">
-<div class="col-lg-8"> 
+<div class="col-lg-9"> 
     <div class="well">
          <div class="row">             
              <div class="col-lg-10"><H2><img width="42" src="app/views/default/images/person.png" />&nbsp;Informacion</H2></div>
@@ -103,7 +103,7 @@ include ("app/controller/mvc.security.php");
 
 
 <div class="row" id="editar" style="display: none;">
-<div class="col-lg-8"> 
+<div class="col-lg-9"> 
     <div class="well">
          <div class="row">             
              <div class="col-lg-10"><H2><img width="42" src="app/views/default/images/person.png" />&nbsp;Informacion</H2></div>           
@@ -204,7 +204,7 @@ include ("app/controller/mvc.security.php");
           <div class="form-group">
             <label for="inputDate" class="col-lg-3 control-label">Fecha Nacimiento</label>
             <div id="datetimepicker4" class="input-append input-group col-lg-8">
-              <input class="form-control input-append" value="<?php echo $_SESSION["current_user"]->birthday->format('d-m-Y') ?>"style="width:345px;" data-format="dd-MM-yyyy" type="text" name="new_birthday"></input>
+              <input class="form-control input-append" value="<?php echo $_SESSION["current_user"]->birthday->format('d-m-Y') ?>"style="width:397px;" data-format="dd-MM-yyyy" type="text" name="new_birthday"></input>
               <span class="add-on btn input-group-btn" >
                <i data-date-icon="icon-calendar icon-white">
                 </i>
