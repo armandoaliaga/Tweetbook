@@ -57,6 +57,10 @@ require 'app/controller/mvc.photo_controller.php';
  {
         $mvc_user->saveUser(array('name'=>$_POST['name'],'last_name'=>$_POST['last_name'], 'username'=> $_POST['username'],'password'=>  $_POST["password"],'email'=>$_POST['email'], 'gender'=>$_POST['gender'],'city'=>$_POST['city'],'relationship_status'=>$_POST['relationship'],'birthday'=>$_POST['birthday'],'status'=>'f'),$_POST['passwordconfirmation']);     
  }
+ else if( isset($_POST['postinfo']) && $_POST['postinfo'] == 'createalbum') 
+ {
+        $mvc_photo->create_album($_POST);     
+ }
  else //Si no existe GET o POST -> muestra la pagina principal
  {     
     $mvc_user->register();  
