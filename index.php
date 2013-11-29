@@ -19,7 +19,7 @@ require 'app/controller/mvc.photo_controller.php';
  {
    $mvc_user->logout();  
  }
- else if( isset($_GET['action']) && $_GET['action'] == 'userprofile' ) 
+ else if( isset($_GET['action']) && isset($_GET['user']) && $_GET['action'] == 'userprofile' ) 
  {   
     if(isset($_GET['tab']))
     {

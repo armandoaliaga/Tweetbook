@@ -4,15 +4,15 @@ include ("app/controller/mvc.security.php");
 <LINK REL=StyleSheet HREF="app/views/default/css/focusPost.css" TYPE="text/css" MEDIA=screen>
 <div class="row">
 <div class="page-header col-lg-9">
-    <h1 id="type"><?php echo $_SESSION["current_user"]->name." ".$_SESSION["current_user"]->last_name ?></h1>
+    <h1 id="type"><?php echo $user->name." ".$user->last_name ?></h1>
   </div>
 </div>
 
 <div class="row">
 <div class="bs-example col-lg-9">
     <ul class="nav nav-tabs" style="margin-bottom: 15px;">
-        <li class="active"><a href="index.php?action=userprofile&tab=wall">Muro</a></li>
-        <li><a href="index.php?action=userprofile&tab=info" >Informacion</a></li>
+        <li class="active"><a href="index.php?action=userprofile&tab=wall&user=<?php echo $user->username; ?>">Muro</a></li>
+        <li><a href="index.php?action=userprofile&tab=info&user=<?php echo $user->username; ?>" >Informacion</a></li>
         <li><a href="index.php?action=userprofile&tab=photo" >Fotos</a></li>
         
     </ul>   
@@ -28,6 +28,7 @@ include ("app/controller/mvc.security.php");
                 <form method="post" action="index.php">
                     <div class="form-group" >
                         <textarea name ="content" class="form-control post" style="height:43px;" onfocus="this.style.height='130px';" onblur="this.style.height='43px';" id="textArea" placeholder="Contenido..." required maxlength="250"></textarea>                    
+                        <input type="hidden" name="userid" value="<?php echo $user->id ?>">
                     </div>                         
                   <button type="submit" class="btn btn-primary pull-right" onfocus="this.click();">Publicar</button>
                 </form>
@@ -48,7 +49,7 @@ foreach ($status as $post) {
     <div class=" col-lg-9">        
         <div class="panel panel-default" style="margin: -1px; margin-top: 30px;">
             <div class="panel-heading" style="background-color: #d1d1d1;">
-                <img src="<?php echo $grav_url; ?>"/>&nbsp;&nbsp;&nbsp;<?php echo "<label style='font-size:20px;'>".$usuario->username."</label>"?><?php if($post->from_user_id == $_SESSION["current_user"]->id){?><a title="Eliminar" onclick="return confirm('Esta seguro de elminar este estado?!....')" href="index.php?action=deletepost&postid=<?php echo $post->id?>" style="margin-left: 470px;"><img width="25px" src="app/views/default/images/delete.png"></a> <?php }?>
+                <img src="<?php echo $grav_url; ?>"/>&nbsp;&nbsp;&nbsp;<?php echo "<label style='font-size:20px;'><a href='index.php?action=userprofile&tab=wall&user=".$usuario->username."'>".$usuario->username."</a></label>"?><?php if($post->from_user_id == $_SESSION["current_user"]->id){?><a title="Eliminar" onclick="return confirm('Esta seguro de elminar este estado?!....')" href="index.php?action=deletepost&postid=<?php echo $post->id?>" style="margin-left: 470px;"><img width="25px" src="app/views/default/images/delete.png"></a> <?php }?>
             </div>            
         <div class="panel-body">                        
             <div class="row">

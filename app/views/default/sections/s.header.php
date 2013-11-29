@@ -27,8 +27,8 @@ session_start();
                     <ul class="nav navbar-nav navbar-center">
                         <li><button class="btn btn-primary" style="margin-left: 5px; margin-top: 1px; " href="#">Buscar</button></li>    
                     </ul>
-                     <ul class="nav navbar-nav navbar-right">
-                     <li><a href="index.php?action=userprofile&tab=wall">Perfil</a></li>
+                     <ul class="nav navbar-nav navbar-right">                         
+                     <li><a href="index.php?action=userprofile&tab=wall&user=<?php echo $_SESSION["current_user"]->username; ?>">Perfil</a></li>
                     <li><a href="index.php?action=principal">Inicio</a></li>
                     <li class="dropdown">
                         <?php 

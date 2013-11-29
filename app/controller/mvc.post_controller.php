@@ -8,7 +8,7 @@ class post_controller extends generic_controller
     {      
         session_start();
         $id=$_SESSION["current_user"]->id;
-         $post=new Post(array('content'=>$content,'from_user_id'=>$id,'to_user_id'=>$id));
+         $post=new Post(array('content'=>$content,'from_user_id'=>$id,'to_user_id'=>$_POST["userid"]));
          $post->save();
         header('Location: ' . $_SERVER['HTTP_REFERER']);  
     }

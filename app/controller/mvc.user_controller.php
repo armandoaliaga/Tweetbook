@@ -91,7 +91,8 @@ class user_cotroller extends generic_controller
     { 
         ob_start();         
         $pagina=$this->load_template();
-        $status=  Post::find_all_by_to_user_id($_SESSION["current_user"]->id, array('order' => 'created_at desc'));
+        $user= User::find_by_username($_GET['user']);
+        $status=  Post::find_all_by_to_user_id($user->id, array('order' => 'created_at desc'));
         include 'app/views/default/modules/m.userprofile.php';
         $table = ob_get_clean();          
         $pagina = $this->replace_content('/\#CONTENIDO\#/ms', $table , $pagina);           
@@ -113,6 +114,7 @@ class user_cotroller extends generic_controller
     { 
         ob_start();         
         $pagina=$this->load_template();        
+        $user= User::find_by_username($_GET['user']);
         include 'app/views/default/modules/m.info.php';
         $table = ob_get_clean();          
         $pagina = $this->replace_content('/\#CONTENIDO\#/ms', $table , $pagina);           
@@ -122,15 +124,15 @@ class user_cotroller extends generic_controller
     function editUser($datos)
     {
         session_start();
-        $usuario = User::find($_SESSION["current_user"]->id);
-        $usuario->name=$datos['name'];
-        $usuario->last_name=$datos['last_name'];
-        $usuario->gender=$datos['gender'];
-        $usuario->city=$datos['city'];
-        $usuario->relationship_status=$datos['relationship_status'];
-        $usuario->birthday=$datos['birthday'];
-        $usuario->save();
-        $_SESSION["current_user"]=$usuario;
+        $user = User::find($_SESSION["current_user"]->id);
+        $user->name=$datos['name'];
+        $user->last_name=$datos['last_name'];
+        $user->gender=$datos['gender'];
+        $user->city=$datos['city'];
+        $user->relationship_status=$datos['relationship_status'];
+        $user->birthday=$datos['birthday'];
+        $user->save();
+        $_SESSION["current_user"]=$user;
         ob_start();  
         $pagina=$this->load_template();       
         include 'app/views/default/modules/m.info.php';

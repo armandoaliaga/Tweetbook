@@ -29,7 +29,7 @@ foreach ($status as $post) {
     <div class=" col-lg-9">        
         <div class="panel panel-default" style="margin: -1px; margin-top: 30px;">
             <div class="panel-heading" style="background-color: #d1d1d1;">
-                <img src="<?php echo $grav_url; ?>"/>&nbsp;&nbsp;&nbsp;<?php echo "<label style='font-size:20px;'>".$usuario->username."</label>"?><?php if($post->from_user_id == $_SESSION["current_user"]->id){?><a title="Eliminar" onclick="return confirm('Esta seguro de elminar este estado?!....')" href="index.php?action=deletepost&postid=<?php echo $post->id?>" style="margin-left: 470px;"><img width="25px" src="app/views/default/images/delete.png"></a> <?php }?>
+                <img src="<?php echo $grav_url; ?>"/>&nbsp;&nbsp;&nbsp;<?php echo "<label style='font-size:20px;'><a href='index.php?action=userprofile&tab=wall&user=".$usuario->username."'>".$usuario->username."</a></label>"?><?php if($post->from_user_id == $_SESSION["current_user"]->id){?><a title="Eliminar" onclick="return confirm('Esta seguro de elminar este estado?!....')" href="index.php?action=deletepost&postid=<?php echo $post->id?>" style="margin-left: 470px;"><img width="25px" src="app/views/default/images/delete.png"></a> <?php }?>
             </div>            
         <div class="panel-body">                        
             <div class="row">
