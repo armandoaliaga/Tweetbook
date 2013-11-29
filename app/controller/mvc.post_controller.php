@@ -10,7 +10,14 @@ class post_controller extends generic_controller
         $id=$_SESSION["current_user"]->id;
          $post=new Post(array('content'=>$content,'from_user_id'=>$id,'to_user_id'=>$id));
          $post->save();
-         header("Location: index.php?action=principal");      
+        header('Location: ' . $_SERVER['HTTP_REFERER']);  
+    }
+    function deletepost($id)
+    {
+         $post= Post::find($id);
+         $post->delete();
+         Comment::table()->delete(array('post_id'=> array($post->id)));         
+         header('Location: ' . $_SERVER['HTTP_REFERER']); 
     }
 }
 ?>

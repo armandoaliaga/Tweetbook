@@ -26,9 +26,11 @@ foreach ($status as $post) {
         $grav_url = "http://www.gravatar.com/avatar/".md5(strtolower( trim( $email ) ) ) . "?d=monsterid&s=" . $size;        
     ?>
 <div class="row">
-    <div class=" col-lg-9">
+    <div class=" col-lg-9">        
         <div class="panel panel-default" style="margin: -1px; margin-top: 30px;">
-            <div class="panel-heading" style="background-color: #d1d1d1;"><img src="<?php echo $grav_url; ?>"/>&nbsp;&nbsp;&nbsp;<?php echo "<label style='font-size:20px;'>".$usuario->username."</label>"?></div>
+            <div class="panel-heading" style="background-color: #d1d1d1;">
+                <img src="<?php echo $grav_url; ?>"/>&nbsp;&nbsp;&nbsp;<?php echo "<label style='font-size:20px;'>".$usuario->username."</label>"?><?php if($post->from_user_id == $_SESSION["current_user"]->id){?><a title="Eliminar" onclick="return confirm('Esta seguro de elminar este estado?!....')" href="index.php?action=deletepost&postid=<?php echo $post->id?>" style="margin-left: 470px;"><img width="25px" src="app/views/default/images/delete.png"></a> <?php }?>
+            </div>            
         <div class="panel-body">                        
             <div class="row">
             <span style="margin-left: 15px; font-size: 19px;"><?php echo $post->content; ?></span>
@@ -73,7 +75,14 @@ foreach ($status as $post) {
                        </div>                                           
                       </div>
                   <div class="row">
-                <small style="margin-left: 15px; font-size: 10px; color: grey;"><?php echo $comment->created_at->setTimezone(new DateTimezone('BOT'))->format("d-m-Y H:i:s"); ?></small>
+                      <div class="col-lg-10">
+                    <small style="margin-left: 15px; font-size: 10px; color: grey;"><?php echo $comment->created_at->setTimezone(new DateTimezone('BOT'))->format("d-m-Y H:i:s"); ?></small>
+                    </div>
+                    <div class="col-lg-2">
+                        <?php if($comment->user_id == $_SESSION["current_user"]->id){?>
+                        <small><a onclick="return confirm('Esta seguro de elminar este comentario?!....')" href="index.php?action=deletecomment&commentid=<?php echo $comment->id; ?>">Eliminar</a></small>
+                    <?php }?>
+                        </div>
             </div>
               </div>
             </div>     

@@ -7,7 +7,14 @@
            session_start();
           $comment=new Comment(array('content'=>$content_comment,'post_id'=>$post_id,'user_id'=>$_SESSION["current_user"]->id));         
          $comment->save();
-         header("Location: index.php?action=principal");      
+         header('Location: ' . $_SERVER['HTTP_REFERER']);       
+       }
+       
+       function deletecomment($id)
+       {
+           $comment=Comment::find($id);
+           $comment->delete();
+           header('Location: ' . $_SERVER['HTTP_REFERER']); 
        }
     }
 ?>
