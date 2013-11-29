@@ -4,17 +4,16 @@ include ("app/controller/mvc.security.php");
 <LINK REL=StyleSheet HREF="app/views/default/css/focusPost.css" TYPE="text/css" MEDIA=screen>
 <div class="row">
 <div class="page-header col-lg-9">
-    <h1 id="type"><?php echo $_SESSION["current_user"]->name." ".$_SESSION["current_user"]->last_name ?></h1>
+    <h1 id="type"><?php echo $user->name." ".$user->last_name ?></h1>
   </div>
 </div>
 
 <div class="row">
 <div class="bs-example col-lg-9">
     <ul class="nav nav-tabs" style="margin-bottom: 15px;">
-        <li ><a href="index.php?action=userprofile&tab=wall" >Muro</a></li>
-        <li ><a href="index.php?action=userprofile&tab=info">Informacion</a></li>
-        <li class="active"><a href="index.php?action=userprofile&tab=photo" >Fotos</a></li>
-        
+       <li><a href="index.php?action=userprofile&tab=wall&user=<?php echo $user->username; ?>">Muro</a></li>
+        <li><a href="index.php?action=userprofile&tab=info&user=<?php echo $user->username; ?>" >Informacion</a></li>
+        <li class="active" ><a href="index.php?action=userprofile&tab=photo&user=<?php echo $user->username; ?>" >Fotos</a></li>
     </ul>   
 </div>
 </div>
@@ -37,10 +36,10 @@ include ("app/controller/mvc.security.php");
         <div class="panel panel-default">
             <div class="panel-body">
                 <?php
-                $cols=0;
+                $cols=1;
                     foreach ($albums as $album)
                     {
-                        if($cols==0)
+                        if($cols==1)
                         {
                             echo "<div class='row'>";
                         }
@@ -50,14 +49,14 @@ include ("app/controller/mvc.security.php");
                                         echo "<div style='height:127px; width:127px;border-style:solid;border-width:1px;border-color:#DDDDDD;'>";
                                         if(isset($album->photos[0]))
                                         {
-                                            echo "<a href='index.php?action=userprofile&tab=photo&album=".$album->id."'><img style='width: 125px;height: 125px;overflow: hidden;'' src='".$album->photos[0]->url()."' /></a>";
+                                            echo "<a href='index.php?action=userprofile&user=".$user->username."&tab=photo&album=".$album->id."'><img style='width: 125px;height: 125px;overflow: hidden;'' src='".$album->photos[0]->url()."' /></a>";
                                         }
                                         else
                                         {
-                                            echo "<a style='margin-top:25px;margin-left:25px;' href='index.php?action=userprofile&tab=photo&album=".$album->id."'>+ Agregar fotos</a>";
+                                            echo "<a style='margin-top:25px;margin-left:25px;' href='index.php?action=userprofile&user=".$user->username."&tab=photo&album=".$album->id."'>+ Agregar fotos</a>";
                                         }
                                         echo "</div>";
-                                        echo "<a href='index.php?action=userprofile&tab=photo&album=".$album->id."'>".$album->name."</a><br>";
+                                        echo "<a href='index.php?action=userprofile&user=".$user->username."&tab=photo&album=".$album->id."'>".$album->name."</a><br>";
                                         echo "<small style='color:gray;'>".sizeof($album->photos)." foto(s)</small>";
                                     echo "</div>";
                                 echo "</div>";
@@ -69,7 +68,7 @@ include ("app/controller/mvc.security.php");
                         }
                         $cols=$cols+1;
                     }
-                    if($cols<3)
+                    if($cols<4 && $cols!=1)
                     {
                         echo "</div>";
                     }

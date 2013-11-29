@@ -24,7 +24,7 @@
   </div>
   <!-- end: header -->
   <!-- columna izquierda -->
-  <div class="row" style="margin-bottom: 120px;">
+  <div class="row">
     <div class="col-lg-1 col-mg-1 col-sg-1">        
     </div>
   <div class="col-lg-2 col-mg-2 col-sg-2">

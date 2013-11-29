@@ -13,7 +13,7 @@ include ("app/controller/mvc.security.php");
     <ul class="nav nav-tabs" style="margin-bottom: 15px;">
         <li ><a href="index.php?action=userprofile&tab=wall&user=<?php echo $user->username; ?>" >Muro</a></li>
         <li class="active"><a href="index.php?action=userprofile&tab=info&user=<?php echo $user->username; ?>">Informacion</a></li>
-        <li><a href="index.php?action=userprofile&tab=photo" >Fotos</a></li>
+        <li><a href="index.php?action=userprofile&tab=photo&user=<?php echo $user->username; ?>" >Fotos</a></li>
         
     </ul>   
 </div>

@@ -36,7 +36,12 @@
 <?php
  }
 ?>
-
+ <?php
+      if(!isset($_SESSION["current_user"]))
+      { ?>
+<img src="app/views/default/images/Logo_med.png" style="width: 300px;margin-left: -80px;margin-top: 80px;"/>
+<small style="margin-left: -60px;margin-top: 10px;">Tweetbook+ &copy; la red social que buscabas.</small>
+ <?php } ?>
 <script>
     $('#changephoto').tooltip();
 </script>

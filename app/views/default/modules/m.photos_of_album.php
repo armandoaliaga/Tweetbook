@@ -8,17 +8,16 @@ include ("app/controller/mvc.security.php");
 
 <div class="row">
 <div class="page-header col-lg-9">
-    <h1 id="type"><?php echo $_SESSION["current_user"]->name." ".$_SESSION["current_user"]->last_name ?></h1>
+    <h1 id="type"><?php echo $user->name." ".$user->last_name ?></h1>
   </div>
 </div>
 
 <div class="row">
 <div class="bs-example col-lg-9">
     <ul class="nav nav-tabs" style="margin-bottom: 15px;">
-        <li ><a href="index.php?action=userprofile&tab=wall" >Muro</a></li>
-        <li ><a href="index.php?action=userprofile&tab=info">Informacion</a></li>
-        <li class="active"><a href="index.php?action=userprofile&tab=photo" >Fotos</a></li>
-        
+        <li> <a href="index.php?action=userprofile&tab=wall&user=<?php echo $user->username; ?>">Muro</a></li>
+        <li><a href="index.php?action=userprofile&tab=info&user=<?php echo $user->username; ?>" >Informacion</a></li>
+        <li class="active"><a href="index.php?action=userprofile&tab=photo&user=<?php echo $user->username; ?>" >Fotos</a></li>  
     </ul>   
 </div>
 </div>
@@ -46,11 +45,11 @@ include ("app/controller/mvc.security.php");
                 </div>
                 <div class="row">
                 <?php
-                $cols=0;
+                $cols=1;
                 $num_id=0;
                     foreach ($album->photos as $photo)
                     {
-                        if($cols==0)
+                        if($cols==1)
                         {
                             echo "<div class='row'>";
                         }
@@ -63,7 +62,7 @@ include ("app/controller/mvc.security.php");
                             $url=$photo->url();
                                 echo "<div style='height:162px; width:162px;border-style:solid;border-width:1px;border-color:#DDDDDD;margin:20px;' >";
                                     echo "<a class='fancybox' data-fancybox-group='gallery' href='$url'><img class='image-container' onmouseover='showDelete($num_id)' onmouseout='hideDelete($num_id)' style='width: 160px;height: 160px;overflow: hidden;' src='".$url."' /></a>";
-                                    echo"<img id='$num_id' class='star-button' onclick='deleteImage(".$photo->id.")'  onmouseover='showDelete($num_id)' title='Eliminar foto'  src='app/views/default/images/delete.png'>";
+                                    echo"<img id='$num_id' class='star-button' onclick='deleteImage(".$photo->id.")'  onmouseover='showDelete($num_id)' title='Eliminar foto'  src='app/views/default/images/delete.png' />";
                                 echo "</div>";
                             echo "</div>";
                         if($cols==3)
@@ -74,7 +73,7 @@ include ("app/controller/mvc.security.php");
                         $cols=$cols+1;
                         $num_id=$num_id+1;
                     }
-                    if($cols<3)
+                    if($cols<4 && $cols!=1)
                     {
                         echo "</div>";
                     }

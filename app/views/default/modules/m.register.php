@@ -60,6 +60,14 @@ if(isset($_SESSION['error_passwords']))
 <?php
 unset($_SESSION['error_passwords']);
 }?>
+      <?php
+      if(!isset($_SESSION["current_user"]))
+      { ?>
+      <div style="margin-bottom: 120px; background-size: cover;
+           background: url(app/views/default/images/Logo_med.png) center center; 
+           opacity: 0.4;z-index:-30; background-repeat:repeat-y; position:absolute; 
+           width: 100%;height: 100%;"></div>
+      <?php } ?>
 <div class="row">
 <div class="col-lg-10">
     <div class="page-header">

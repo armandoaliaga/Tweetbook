@@ -7,7 +7,8 @@
         { 
             ob_start();         
             $pagina=$this->load_template();
-            $albums=Album::find("all", array('order' => 'created_at desc','conditions' => array('user_id = ?', $_SESSION["current_user"]->id)));
+            $user= User::find_by_username($_GET['user']);
+            $albums=Album::find("all", array('order' => 'created_at desc','conditions' => array('user_id = ?', $user->id)));
             include 'app/views/default/modules/m.photos.php';
             $table = ob_get_clean();          
             $pagina = $this->replace_content('/\#CONTENIDO\#/ms', $table , $pagina);           
@@ -29,6 +30,7 @@
             ob_start();         
             $pagina=$this->load_template();
             $album=Album::find($album_id);
+            $user= User::find_by_username($_GET['user']);
             include 'app/views/default/modules/m.photos_of_album.php';
             $table = ob_get_clean();          
             $pagina = $this->replace_content('/\#CONTENIDO\#/ms', $table , $pagina);           
