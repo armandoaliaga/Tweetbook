@@ -1,7 +1,11 @@
 <?php
 include ("app/controller/mvc.security.php");
 ?>
-<LINK REL=StyleSheet HREF="app/views/default/css/focusPost.css" TYPE="text/css" MEDIA=screen>
+<LINK REL=StyleSheet HREF="app/views/default/css/deletePhotoEffects.css" TYPE="text/css" MEDIA=screen>
+<script type="text/javascript" src="app/views/default/js/deletePhotoEffects.js"></script>
+<script type="text/javascript" src="app/views/default/js/jquery.fancybox.js?v=2.1.4"></script>
+<link rel="stylesheet" type="text/css" href="app/views/default/css/jquery.fancybox.css?v=2.1.4" media="screen" />
+
 <div class="row">
 <div class="page-header col-lg-9">
     <h1 id="type"><?php echo $_SESSION["current_user"]->name." ".$_SESSION["current_user"]->last_name ?></h1>
@@ -56,8 +60,9 @@ include ("app/controller/mvc.security.php");
                                 echo "<input type='hidden' name='album_id' value='".$album->id."'/>";
                                 echo "<input type='hidden' name='postinfo' value='deletephoto'/>";
                             echo "</form>";
+                            $url=$photo->url();
                                 echo "<div style='height:162px; width:162px;border-style:solid;border-width:1px;border-color:#DDDDDD;margin:20px;' >";
-                                    echo "<img class='image-container' onmouseover='showDelete($num_id)' onmouseout='hideDelete($num_id)' style='width: 160px;height: 160px;overflow: hidden;' src='".$photo->url()."' />";
+                                    echo "<a class='fancybox' data-fancybox-group='gallery' href='$url'><img class='image-container' onmouseover='showDelete($num_id)' onmouseout='hideDelete($num_id)' style='width: 160px;height: 160px;overflow: hidden;' src='".$url."' /></a>";
                                     echo"<img id='$num_id' class='star-button' onclick='deleteImage(".$photo->id.")'  onmouseover='showDelete($num_id)' title='Eliminar foto'  src='app/views/default/images/delete.png'>";
                                 echo "</div>";
                             echo "</div>";
@@ -114,35 +119,8 @@ include ("app/controller/mvc.security.php");
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-<script>
-    function showDelete(elemId)
-    {
-        elem=document.getElementById(elemId);
-        elem.style.visibility="visible";
-    }
-    function hideDelete(elemId)
-    {
-        elem=document.getElementById(elemId);
-        elem.style.visibility="hidden";
-    }
-    function deleteImage(imgId)
-    {
-        document.getElementsByName("delete"+imgId)[0].submit();
-    }
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.fancybox').fancybox();
+    });
 </script>
-<STYLE>
-    .image-container {
-    display: inline-block;
-    position: relative;
-}
-
-.star-button {
-    position: absolute;    
-    right: 40px;
-    top: 26px;
-    height:25px;
-    width:25px;
-    cursor: pointer;
-    visibility:hidden;
-}
-</style>

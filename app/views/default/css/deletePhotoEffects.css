@@ -1,0 +1,14 @@
+    .image-container {
+    display: inline-block;
+    position: relative;
+}
+
+.star-button {
+    position: absolute;    
+    right: 40px;
+    top: 26px;
+    height:25px;
+    width:25px;
+    cursor: pointer;
+    visibility:hidden;
+}
