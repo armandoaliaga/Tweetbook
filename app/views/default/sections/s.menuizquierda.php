@@ -1,4 +1,5 @@
- <?php    
+<div> 
+<?php    
  if(!isset($_SESSION))
  {
      session_start();
@@ -56,3 +57,4 @@
         document.getElementById("profile-option").className="active";
     }
 </script>
+</div>

@@ -14,7 +14,16 @@
 <LINK REL=StyleSheet HREF="app/views/default/css/bootstrap.css" TYPE="text/css" MEDIA=screen>
 <LINK REL=StyleSheet HREF="app/views/default/css/bootstrap.min.css" TYPE="text/css" MEDIA=screen> 
 <LINK REL=StyleSheet HREF="app/views/default/css/bootstrap-datetimepicker.min.css" TYPE="text/css" MEDIA=screen> 
-        
+    <style>
+        .flotant-left
+        {
+            position:fixed; top:9%; left:9%;  z-index:150;
+        }
+        .flotant-right
+        {
+            position:fixed; top:11%; right:2%;  z-index:150; height: 100%;
+        }
+    </style>
 </head>
 <body>
 
@@ -28,12 +37,19 @@
     <div class="col-lg-1 col-mg-1 col-sg-1">        
     </div>
   <div class="col-lg-2 col-mg-2 col-sg-2">
+      <div class="flotant-left">
     #MENULEFT#
+    </div>
   </div>
   <!-- end: columna izquierda -->
   <!-- contenido -->
-  <div  class="col-lg-8 col-mg-8 col-sg-8">
+  <div  class="col-lg-6 col-mg-6 col-sg-6">
     #CONTENIDO#
+  </div>
+  <div  class="col-lg-3 col-mg-3 col-sg-3">
+    <div class="flotant-right">
+        #RIGHTBAR#
+    </div> 
   </div>
   <!-- end: contenido -->
 </div>

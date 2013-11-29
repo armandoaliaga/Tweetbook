@@ -35,6 +35,10 @@ class generic_controller {
     include 'app/views/default/sections/s.menuizquierda.php';
     $menu_left= ob_get_clean();
     $pagina = $this->replace_content('/\#MENULEFT\#/ms' ,$menu_left , $pagina);
+    ob_start();
+    include 'app/views/default/sections/s.rightbar.php';
+    $right_bar= ob_get_clean();
+    $pagina = $this->replace_content('/\#RIGHTBAR\#/ms' ,$right_bar , $pagina);
     return $pagina;
     }
 }
