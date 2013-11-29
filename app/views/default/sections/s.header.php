@@ -21,12 +21,12 @@ session_start();
                     <?php
                                                    
                     if(isset($_SESSION["autentificado"]) && $_SESSION["autentificado"] == "SI"){?>
-                  <form class="navbar-form navbar-center">                       
-                    <input type="text" class="form-control col-lg-8" placeholder="Buscar..." style="width: 40%;">                                       
-                  </form>                    
+                  <form class="navbar-form navbar-center" name="search_friend" method="get" action="index.php?action=search">                       
+                    <input type="text" name="search_param" class="form-control col-lg-8" placeholder="Buscar..." style="width: 40%;">                                       
                     <ul class="nav navbar-nav navbar-center">
                         <li><button class="btn btn-primary" style="margin-left: 5px; margin-top: 1px; " href="#">Buscar</button></li>    
                     </ul>
+                    </form> 
                      <ul class="nav navbar-nav navbar-right">                         
                      <li><a href="index.php?action=userprofile&tab=wall&user=<?php echo $_SESSION["current_user"]->username; ?>">Perfil</a></li>
                     <li><a href="index.php?action=principal">Inicio</a></li>

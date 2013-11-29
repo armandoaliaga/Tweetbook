@@ -140,6 +140,11 @@ class user_cotroller extends generic_controller
         $pagina = $this->replace_content('/\#CONTENIDO\#/ms', $register , $pagina);          
         $this->view_page($pagina);  
     }
+    
+    function search_friends($search_param)
+    {
+        
+    }
 }
 
 ?>
