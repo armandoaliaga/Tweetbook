@@ -3,7 +3,7 @@ include ("app/controller/mvc.security.php");
 ?>
 <LINK REL=StyleSheet HREF="app/views/default/css/focusPost.css" TYPE="text/css" MEDIA=screen>
 <div class="row" style="margin-top: 20px;">
-    <div class="col-lg-9">
+    <div class="col-lg-11">
         <div class="panel panel-primary " style="border-color: #121212;" >
             <div class="panel-heading" style="background-color: #121212; border-color: #121212;">Estado...</div>
             <div class="panel-body">
@@ -27,10 +27,10 @@ foreach ($status as $post) {
         $grav_url = "http://www.gravatar.com/avatar/".md5(strtolower( trim( $email ) ) ) . "?d=monsterid&s=" . $size;        
     ?>
 <div class="row">
-    <div class=" col-lg-9">        
+    <div class=" col-lg-11">        
         <div class="panel panel-default" style="margin: -1px; margin-top: 30px;">
             <div class="panel-heading" style="background-color: #d1d1d1;">
-                <img src="<?php echo $grav_url; ?>"/>&nbsp;&nbsp;&nbsp;<?php echo "<label style='font-size:20px;'><a href='index.php?action=userprofile&tab=wall&user=".$usuario->username."'>".$usuario->username."</a></label>"?><?php if($post->from_user_id == $_SESSION["current_user"]->id){?><a title="Eliminar" onclick="return confirm('Esta seguro de elminar este estado?!....')" href="index.php?action=deletepost&postid=<?php echo $post->id?>" style="margin-left: 470px;"><img width="25px" src="app/views/default/images/delete.png"></a> <?php }?>
+                <img src="<?php echo $grav_url; ?>"/>&nbsp;&nbsp;&nbsp;<?php echo "<label style='font-size:20px;'><a href='index.php?action=userprofile&tab=wall&user=".$usuario->username."'>".$usuario->username."</a></label>"?><?php if($post->from_user_id == $_SESSION["current_user"]->id){?><a title="Eliminar" onclick="return confirm('Esta seguro de elminar este estado?!....')" href="index.php?action=deletepost&postid=<?php echo $post->id?>" class='pull-right'><img width="25px" src="app/views/default/images/delete.png"></a> <?php }?>
             </div>            
         <div class="panel-body">                        
             <div class="row">

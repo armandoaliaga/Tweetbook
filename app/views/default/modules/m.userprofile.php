@@ -3,13 +3,13 @@ include ("app/controller/mvc.security.php");
 ?>
 <LINK REL=StyleSheet HREF="app/views/default/css/focusPost.css" TYPE="text/css" MEDIA=screen>
 <div class="row">
-<div class="page-header col-lg-9">
+<div class="page-header col-lg-11">
     <h1 id="type"><?php echo $user->name." ".$user->last_name ?></h1>
   </div>
 </div>
 <?php  if( $user->id==$_SESSION["current_user"]->id ||Follow::find_by_follower_user_id_and_followed_user_id($user->id,$_SESSION["current_user"]->id)) {?>
     <div class="row">
-    <div class="bs-example col-lg-9">
+    <div class="bs-example col-lg-11">
         <ul class="nav nav-tabs" style="margin-bottom: 15px;">
             <li class="active"><a href="index.php?action=userprofile&tab=wall&user=<?php echo $user->username; ?>">Muro</a></li>
             <li><a href="index.php?action=userprofile&tab=info&user=<?php echo $user->username; ?>" >Informacion</a></li>
@@ -25,7 +25,7 @@ include ("app/controller/mvc.security.php");
 </div>
 </div>
     <div class="row" style="margin-top: 20px;">
-        <div class="col-lg-9">
+        <div class="col-lg-11">
             <div class="panel panel-primary " style="border-color: #121212;" >
                 <div class="panel-heading" style="background-color: #121212; border-color: #121212;">Estado...</div>
                 <div class="panel-body">
@@ -50,10 +50,10 @@ include ("app/controller/mvc.security.php");
             $grav_url = "http://www.gravatar.com/avatar/".md5(strtolower( trim( $email ) ) ) . "?d=monsterid&s=" . $size;        
         ?>
     <div class="row">
-        <div class=" col-lg-9">        
+        <div class=" col-lg-11">        
             <div class="panel panel-default" style="margin: -1px; margin-top: 30px;">
                 <div class="panel-heading" style="background-color: #d1d1d1;">
-                    <img src="<?php echo $grav_url; ?>"/>&nbsp;&nbsp;&nbsp;<?php echo "<label style='font-size:20px;'><a href='index.php?action=userprofile&tab=wall&user=".$usuario->username."'>".$usuario->username."</a></label>"?><?php if($post->from_user_id == $_SESSION["current_user"]->id){?><a title="Eliminar" onclick="return confirm('Esta seguro de elminar este estado?!....')" href="index.php?action=deletepost&postid=<?php echo $post->id?>" style="margin-left: 470px;"><img width="25px" src="app/views/default/images/delete.png"></a> <?php }?>
+                    <img src="<?php echo $grav_url; ?>"/>&nbsp;&nbsp;&nbsp;<?php echo "<label style='font-size:20px;'><a href='index.php?action=userprofile&tab=wall&user=".$usuario->username."'>".$usuario->username."</a></label>"?><?php if($post->from_user_id == $_SESSION["current_user"]->id){?><a title="Eliminar" onclick="return confirm('Esta seguro de elminar este estado?!....')" href="index.php?action=deletepost&postid=<?php echo $post->id?>" class='pull-right'><img width="25px" src="app/views/default/images/delete.png"></a> <?php }?>
                 </div>            
             <div class="panel-body">                        
                 <div class="row">

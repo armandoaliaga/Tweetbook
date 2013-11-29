@@ -1,10 +1,10 @@
 <div class="row">
-    <div class="page-header col-lg-9">
+    <div class="page-header col-lg-11">
     <h2 id="type">Resultados de busqueda: "<?php echo $search_param; ?>"</h2>
   </div>
 </div>
 <div class="row">
-    <div class=" col-lg-9">
+    <div class=" col-lg-11">
     <div class="list-group">  
     <?php
         foreach ($friends_result as $follower) {

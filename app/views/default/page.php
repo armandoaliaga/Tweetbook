@@ -53,7 +53,7 @@
   </div>
   <!-- end: contenido -->
 </div>
-  <div class="row">
+  <div class="row" style='margin-top:50px;'>
       <div class="col-lg-12 col-mg-12 col-sg-12">
           <div style="background-color: black;height: 200px;">
               <font color="white">

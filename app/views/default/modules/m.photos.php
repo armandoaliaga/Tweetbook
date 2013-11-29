@@ -3,13 +3,13 @@ include ("app/controller/mvc.security.php");
 ?>
 <LINK REL=StyleSheet HREF="app/views/default/css/focusPost.css" TYPE="text/css" MEDIA=screen>
 <div class="row">
-<div class="page-header col-lg-9">
+<div class="page-header col-lg-11">
     <h1 id="type"><?php echo $user->name." ".$user->last_name ?></h1>
   </div>
 </div>
 
 <div class="row">
-<div class="bs-example col-lg-9">
+<div class="bs-example col-lg-11">
     <ul class="nav nav-tabs" style="margin-bottom: 15px;">
        <li><a href="index.php?action=userprofile&tab=wall&user=<?php echo $user->username; ?>">Muro</a></li>
         <li><a href="index.php?action=userprofile&tab=info&user=<?php echo $user->username; ?>" >Informacion</a></li>
@@ -34,7 +34,7 @@ include ("app/controller/mvc.security.php");
     </div>
 </div>
 <div class="row">
-    <div class="col-lg-8 col-md-8 col-sm-8">
+    <div class="col-lg-11 col-md-11 col-sm-11">
         <div class="panel panel-default">
             <div class="panel-body">
                 <?php
