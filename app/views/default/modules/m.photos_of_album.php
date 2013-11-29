@@ -30,9 +30,12 @@ include ("app/controller/mvc.security.php");
         
     </div>
     <div class="col-lg-3 col-md-3 col-sm-3" style="margin-left:-42px;">
+        <?php if( $user->id==$_SESSION["current_user"]->id) {?>
         <ul class="pager">
             <li><a data-toggle="modal" data-target="#uploadAlbum" href="#" >+Agregar fotos</a></li>
         </ul>
+        <?php } ?>
+        
     </div>
 </div>
 <div class="row">

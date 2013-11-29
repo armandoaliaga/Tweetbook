@@ -26,9 +26,11 @@ include ("app/controller/mvc.security.php");
         
     </div>
     <div class="col-lg-3 col-md-3 col-sm-3" style="margin-left:-38px;">
+         <?php if( $user->id==$_SESSION["current_user"]->id) {?>
         <ul class="pager">
             <li><a data-toggle="modal" data-target="#uploadAlbum" href="#" >+Crear álbum</a></li>
         </ul>
+         <?php } ?>
     </div>
 </div>
 <div class="row">
