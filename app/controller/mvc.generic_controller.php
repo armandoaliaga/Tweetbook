@@ -25,7 +25,7 @@ class generic_controller {
       return preg_replace($in, $out, $pagina);
     }
     public function load_template(){
-        ob_start();
+    ob_start();
     $pagina = $this->load_page('app/views/default/page.php');
     //$header = $this->load_page('app/views/default/sections/s.header.php');
     include 'app/views/default/sections/s.header.php';
