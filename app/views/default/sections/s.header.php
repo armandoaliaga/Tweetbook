@@ -21,8 +21,9 @@ session_start();
                     <?php
                                                    
                     if(isset($_SESSION["autentificado"]) && $_SESSION["autentificado"] == "SI"){?>
-                  <form class="navbar-form navbar-center" name="search_friend" method="get" action="index.php?action=search">                       
-                    <input type="text" name="search_param" class="form-control col-lg-8" placeholder="Buscar..." style="width: 40%;">                                       
+                  <form class="navbar-form navbar-center" name="search_friend" method="post" action="index.php">     
+                      <input type="hidden" value="search" name="postinfo" />
+                    <input type="text" name="search_param" class="form-control col-lg-8" placeholder="Buscar..." autocomplete="off" style="width: 40%;">                                       
                     <ul class="nav navbar-nav navbar-center">
                         <li><button class="btn btn-primary" style="margin-left: 5px; margin-top: 1px; " href="#">Buscar</button></li>    
                     </ul>

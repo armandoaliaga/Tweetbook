@@ -143,7 +143,35 @@ class user_cotroller extends generic_controller
     
     function search_friends($search_param)
     {
-        
+        //quitar espacios blancos extra
+        $search_param=preg_replace('/( )+/', ' ', $search_param);
+        $search_param=preg_replace('/(\s)+/', ' ', $search_param);
+        $search_params_array=explode(" ",$search_param);
+        $friends_result;
+        ob_start();         
+        $pagina=$this->load_template();
+        if(sizeof($search_params_array)==1)
+        {
+            $username_coincidences= User::find('all', array('conditions' => "username LIKE '%$search_param%'"));
+            $email_coincidences= User::find('all', array('conditions' => "email LIKE '%$search_param%'"));
+            $first_name_coincidences= User::find('all', array('conditions' => "name LIKE '%$search_param%'"));
+            $last_name_coincidences= User::find('all', array('conditions' => "last_name LIKE '%$search_param%'")); 
+            $friends_result = array_unique( array_merge($username_coincidences,array_merge( $email_coincidences,  array_merge($first_name_coincidences , $last_name_coincidences) )));
+        }
+        else 
+        {
+            $name=$search_params_array[0];
+            unset($search_params_array[0]);
+            $last_name= implode(" ",$search_params_array);
+            $first_and_last_name_coincidences= User::find('all', array('conditions' => "name LIKE '%".$name."%' AND last_name LIKE'%".$last_name."%'"));
+            $first_name_coincidences= User::find('all', array('conditions' => "name LIKE '%".$name."%'"));
+            $last_name_coincidences= User::find('all', array('conditions' => "last_name LIKE '%$last_name%'")); 
+            $friends_result = array_unique( array_merge($first_and_last_name_coincidences,array_merge( $first_name_coincidences , $last_name_coincidences )));
+        }
+        include 'app/views/default/modules/m.search_results.php';
+        $table = ob_get_clean();          
+        $pagina = $this->replace_content('/\#CONTENIDO\#/ms', $table , $pagina);           
+        $this->view_page($pagina);
     }
 }
 

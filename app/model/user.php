@@ -13,6 +13,10 @@ class User extends ActiveRecord\Model
         
         static $validates_uniqueness_of = array(array('username','message'=>'El nombre de usuario ya esta siendo utilizado!'));
          static $validates_format_of = array(array('email', 'message' =>'El email es invalido!', 'with' =>'/^[^0-9][A-z0-9_]+([.][A-z0-9_]+)*[@][A-z0-9_]+([.][A-z0-9_]+)*[.][A-z]{2,4}$/'));
+
+          public function __toString() {
+                return "".$this->id;
+            }
 }
 
 ?>

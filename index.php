@@ -94,9 +94,9 @@ require 'app/controller/mvc.follow_controller.php';
  {
          $mvc_user->editUser(array('name'=>$_POST['new_name'],'last_name'=>$_POST['new_last_name'],'gender'=>$_POST['new_gender'],'city'=>$_POST['new_city'],'relationship_status'=>$_POST['new_relationship'],'birthday'=>$_POST['new_birthday']));     
  }
- else if( isset($_GET['action']) && $_GET['action'] == 'search') 
+ else if( isset($_POST['postinfo']) && $_POST['postinfo'] == 'search') 
  {
-    $mvc_user->search_friends($_GET['search_param']);
+    $mvc_user->search_friends($_POST['search_param']);
  }
  else //Si no existe GET o POST -> muestra la pagina principal
  {     
