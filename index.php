@@ -2,7 +2,8 @@
  require 'app/controller/mvc.user_controller.php';
  require 'app/controller/mvc.post_controller.php';
 require 'app/controller/mvc.comment_controller.php';   
-require 'app/controller/mvc.photo_controller.php';   
+require 'app/controller/mvc.photo_controller.php'; 
+require 'app/controller/mvc.follow_controller.php'; 
      //se instancia al controlador 
 	 //comentario de prueba
 // $mvc = new mvc_controller();
@@ -11,6 +12,7 @@ require 'app/controller/mvc.photo_controller.php';
  $mvc_post=new post_controller();
  $mvc_comment=new comment_controller();
  $mvc_photo=new photo_controller();
+ $mvc_follow=new follow_controller();
  if( isset($_POST['usernameoremail']) && isset($_POST['password']) )
  {
    $mvc_user->login($_POST['usernameoremail'],$_POST['password']);
@@ -83,6 +85,10 @@ require 'app/controller/mvc.photo_controller.php';
  else if( isset($_POST['postinfo']) && $_POST['postinfo'] == 'deletephoto') 
  {
         $mvc_photo->delete_photo($_POST['photo_id'],$_POST['album_id']);     
+ }
+ else if( isset($_POST['follower_id']) && isset($_POST['followed_id'])) 
+ {
+        $mvc_follow->save_follow($_POST['follower_id'],$_POST['followed_id']);     
  }
  else if( isset($_POST['new_name']) && isset($_POST['new_last_name']) )
  {
