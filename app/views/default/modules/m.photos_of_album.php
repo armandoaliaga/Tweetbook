@@ -69,10 +69,14 @@ include ("app/controller/mvc.security.php");
                         if($cols==3)
                         {
                             $cols=0;
-                            echo "<div>";
+                            echo "</div>";
                         }
                         $cols=$cols+1;
                         $num_id=$num_id+1;
+                    }
+                    if($cols<3)
+                    {
+                        echo "</div>";
                     }
                 ?>                      
                 </div>
@@ -119,6 +123,7 @@ include ("app/controller/mvc.security.php");
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+</div>
 <script type="text/javascript">
 $(document).ready(function() {
     $('.fancybox').fancybox();
