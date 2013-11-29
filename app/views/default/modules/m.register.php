@@ -69,51 +69,52 @@ unset($_SESSION['error_passwords']);
            width: 100%;height: 100%;"></div>
       <?php } ?>
 <div class="row">
-<div class="col-lg-10">
+<div class="col-lg-12">
     <div class="page-header">
               <h1 id="type">Registrase</h1>
             </div>
     <div class="well">
       <form class="bs-example form-horizontal" action="index.php" method="post">
+          <small style="margin-left: 480px;">* Campos Obligatorios</small>
         <fieldset>          
           <div class="form-group">
-            <label for="inputName" class="col-lg-3 control-label">Nombre</label>
+            <label for="inputName" class="col-lg-3 control-label">* Nombre</label>
             <div class="col-lg-9">
                 <input type="text" name="name" cannot-be-blank class="form-control" id="inputName" placeholder="Nombre" required maxlength="50">
             </div>
           </div>
           <div class="form-group">
-            <label for="inputName" class="col-lg-3 control-label">Apellido</label>
+            <label for="inputName" class="col-lg-3 control-label"> Apellido</label>
             <div class="col-lg-9">
               <input type="text" name="last_name" class="form-control" id="inputName" placeholder="Apellido" maxlength="50">
             </div>
           </div>
           <div class="form-group">
-            <label for="inputName" class="col-lg-3 control-label">Nombre de usuario</label>
+            <label for="inputName" class="col-lg-3 control-label">* Nombre de usuario</label>
             <div class="col-lg-9">
               <input type="text" name="username" cannot-be-blank  class="form-control" id="inputName" placeholder="Nombre de usuario" required maxlength="25">
             </div>
           </div>
           <div class="form-group">
-              <label for="inputPassword" class="col-lg-3 control-label">Contraseña</label>
+              <label for="inputPassword" class="col-lg-3 control-label">* Contraseña</label>
             <div class="col-lg-9">
                 <input type="password" name="password" cannot-be-blank class="form-control" id="inputPassword" placeholder="Contraseña" required maxlength="25">           
             </div>
           </div>  
            <div class="form-group">
-              <label for="inputPassword" class="col-lg-3 control-label">Contraseña de confirmacion</label>
+              <label for="inputPassword" class="col-lg-3 control-label">* Contraseña de confirmacion</label>
             <div class="col-lg-9">
                 <input type="password" name="passwordconfirmation" class="form-control" id="inputPassword" placeholder="Contraseña de confirmacion" required maxlength="25">           
             </div>
           </div>  
           <div class="form-group">
-            <label for="inputName" class="col-lg-3 control-label">Correo</label>
+            <label for="inputName" class="col-lg-3 control-label">* Correo</label>
             <div class="col-lg-9">
               <input type="text" name="email" is-email cannot-be-blank  class="form-control"  id="inputName" placeholder="Correo" required maxlength="30">
             </div>
           </div>
           <div class="form-group">
-            <label class="col-lg-3 control-label">Sexo</label>
+            <label class="col-lg-3 control-label">* Sexo</label>
             <div class="col-lg-9">
               <div class="radio">
                 <label>
@@ -152,7 +153,7 @@ unset($_SESSION['error_passwords']);
           <div class="form-group">
             <label for="inputDate" class="col-lg-3 control-label">Fecha Nacimiento</label>
             <div id="datetimepicker4" class="input-append input-group col-lg-8">
-              <input class="form-control input-append" style="width:472px;" data-format="dd-MM-yyyy" type="text" name="birthday"></input>
+              <input class="form-control input-append" style="width:416px;" data-format="dd-MM-yyyy" type="text" name="birthday"></input>
               <span class="add-on btn input-group-btn" >
                <i data-date-icon="icon-calendar icon-white">
                 </i>
