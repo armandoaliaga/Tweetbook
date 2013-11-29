@@ -10,6 +10,7 @@ include ("app/controller/mvc.security.php");
                 <form method="post" action="index.php">
                     <div class="form-group" >
                         <textarea name ="content" class="form-control post" style="height:43px;" onfocus="this.style.height='130px';" onblur="this.style.height='43px';" id="textArea" placeholder="Contenido..." required maxlength="250"></textarea>                    
+                         <input type="hidden" name="userid" value="<?php echo $_SESSION["current_user"]->id ?>">
                   </div>                         
                   <button type="submit" class="btn btn-primary pull-right" onfocus="this.click();">Publicar</button>
                 </form>

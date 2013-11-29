@@ -22,7 +22,7 @@
             unset($attributes["postinfo"]);
             $album = new Album($attributes);
             $album->save();
-            header("Location: index.php?action=userprofile&tab=photo");
+            header("Location: index.php?action=userprofile&tab=photo&user=".$_SESSION["current_user"]->username);
         }
         
         function user_photos_of_album($album_id)
@@ -46,13 +46,13 @@
                 $photo = new Photo($photo_attributes);
                 $photo->save();    
             }
-            header("Location: index.php?action=userprofile&tab=photo&album=".$album_id);
+            header("Location: index.php?action=userprofile&tab=photo&album=".$album_id."&user=".$_SESSION["current_user"]->username);
         }
         function delete_photo($photo_id,$album_id)
         {
             session_start();//photo_to_upload
             Photo::find($photo_id)->delete();
-            header("Location: index.php?action=userprofile&tab=photo&album=".$album_id);
+            header("Location: index.php?action=userprofile&tab=photo&album=".$album_id)."&user=".$_SESSION["current_user"]->username;
         }
     }
 ?>
