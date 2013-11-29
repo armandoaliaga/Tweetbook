@@ -56,6 +56,10 @@ require 'app/controller/mvc.photo_controller.php';
  {
     $mvc_comment->deletecomment($_GET['commentid']);
  }
+ else if( isset($_GET['action']) && isset($_GET['postid']) && $_GET['action'] == 'deletepost') 
+ {
+    $mvc_post->deletepost($_GET['postid']);
+ }
  else if( isset($_POST['content']))
  {
      $mvc_post->save_post($_POST['content']);
