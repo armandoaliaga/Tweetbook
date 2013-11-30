@@ -4,9 +4,10 @@
   </div>
 </div>
 <div class="row">
-    <div class=" col-lg-11">
+    <div class=" col-lg-11" <?php echo sizeof($friends_result)==0?"style='height:220px;'":""; ?>>
     <div class="list-group">  
     <?php
+    echo sizeof($friends_result)==0?"<h4>No existen resultados que coincidan con la busqueda...</h4>":"";
         foreach ($friends_result as $follower) {
            $email = $follower->email;                            
            $size = 65;

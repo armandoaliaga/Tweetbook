@@ -19,24 +19,27 @@
    <?php if($_SESSION["current_user"]->username != "admin"){?>
        <div class="bs-example" style="margin-top: 20px;">
                  <ul class="nav nav-pills nav-stacked" style="max-width: 300px;">                     
-                   <li id="home-option"><a href="index.php?action=principal">Home</a></li>
-                   <li id="profile-option"><a href="index.php?action=userprofile&tab=wall&user=<?php echo $_SESSION["current_user"]->username; ?>">Profile</a></li>                
+                   <li id="home-option"><a href="index.php?action=principal">Inicio</a></li>
+                   <li id="profile-option"><a href="index.php?action=userprofile&tab=wall&user=<?php echo $_SESSION["current_user"]->username; ?>">Perfil</a></li>                
                  </ul>
        </div>
 <?php }?>
 
  <?php }}else{                     
-           $email = User::find_by_username($_GET['user'])->email;                            
+           $email = ($_SESSION["current_user"]->username!="admin"? User::find_by_username($_GET['user'])->email:"admin@tweetbook.com");                            
            $size = 200;
            $grav_url = "http://www.gravatar.com/avatar/".md5(strtolower( trim( $email ) ) ) . "?d=monsterid&s=" . $size;        
            ?>
 
    <a href="https://es.gravatar.com" target="_blank" id="changephoto" data-toggle="tooltip" data-placement="left" title="" data-original-title="Cambiar imagen"><img src="<?php echo $grav_url; ?>" style="margin-top: 15px;"/></a>
        <div class="bs-example" style="margin-top: 20px;">
+           <?php if($_SESSION["current_user"]->username!="admin")
+                { ?>
                  <ul class="nav nav-pills nav-stacked" style="max-width: 300px;">
-                   <li id="home-option"><a href="index.php?action=principal">Home</a></li>
-                   <li id="profile-option"><a href="index.php?action=userprofile&tab=wall">Profile</a></li>                
+                   <li id="home-option"><a href="index.php?action=principal">Inicio</a></li>
+                   <li id="profile-option"><a href="index.php?action=userprofile&tab=wall">Perfil</a></li>                
                  </ul>
+            <?php } ?>
        </div>
 <?php
  }

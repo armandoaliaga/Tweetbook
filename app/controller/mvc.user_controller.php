@@ -135,14 +135,28 @@ class user_cotroller extends generic_controller
     }
     function userprofile()
     { 
-        ob_start();         
-        $pagina=$this->load_template();
-        $user= User::find_by_username($_GET['user']);
-        $status=  Post::find_all_by_to_user_id($user->id, array('order' => 'created_at desc'));
-        include 'app/views/default/modules/m.userprofile.php';
-        $table = ob_get_clean();          
-        $pagina = $this->replace_content('/\#CONTENIDO\#/ms', $table , $pagina);           
-        $this->view_page($pagina);
+        session_start();
+        if($_SESSION["current_user"]->username!="admin")
+        {
+            ob_start();         
+            $pagina=$this->load_template();
+            $user= User::find_by_username($_GET['user']);
+            $status=  Post::find_all_by_to_user_id($user->id, array('order' => 'created_at desc'));
+            include 'app/views/default/modules/m.userprofile.php';
+            $table = ob_get_clean();          
+            $pagina = $this->replace_content('/\#CONTENIDO\#/ms', $table , $pagina);           
+            $this->view_page($pagina);
+        }
+        else 
+        {
+            $users=User::find('all');
+           $pagina=$this->load_template();
+            ob_start();                                          
+            include 'app/views/default/modules/m.adminreport.php';            
+            $table = ob_get_clean();
+            $pagina = $this->replace_content('/\#CONTENIDO\#/ms', $table , $pagina);                
+            $this->view_page($pagina);   
+        }
     }
     
     function principal()
@@ -217,35 +231,50 @@ class user_cotroller extends generic_controller
     
     function search_friends($search_param)
     {
+        session_start();
+        if($_SESSION["current_user"]->username!="admin")
+        {
         //quitar espacios blancos extra
-        $search_param=preg_replace('/( )+/', ' ', $search_param);
-        $search_param=preg_replace('/(\s)+/', ' ', $search_param);
-        $search_params_array=explode(" ",$search_param);
-        $friends_result;
-        ob_start();         
-        $pagina=$this->load_template();
-        if(sizeof($search_params_array)==1)
-        {
-            $username_coincidences= User::find('all', array('conditions' => "username LIKE '%$search_param%'"));
-            $email_coincidences= User::find('all', array('conditions' => "email LIKE '%$search_param%'"));
-            $first_name_coincidences= User::find('all', array('conditions' => "name LIKE '%$search_param%'"));
-            $last_name_coincidences= User::find('all', array('conditions' => "last_name LIKE '%$search_param%'")); 
-            $friends_result = array_unique( array_merge($username_coincidences,array_merge( $email_coincidences,  array_merge($first_name_coincidences , $last_name_coincidences) )));
+            $search_param=preg_replace('/( )+/', ' ', $search_param);
+            $search_param=preg_replace('/(\s)+/', ' ', $search_param);
+            $search_params_array=explode(" ",$search_param);
+            $friends_result;
+            ob_start();         
+            $pagina=$this->load_template();
+            if(sizeof($search_params_array)==1)
+            {
+                $username_coincidences= User::find('all', array('conditions' => "username LIKE '%$search_param%'"));
+                $email_coincidences= User::find('all', array('conditions' => "email LIKE '%$search_param%'"));
+                $first_name_coincidences= User::find('all', array('conditions' => "name LIKE '%$search_param%'"));
+                $last_name_coincidences= User::find('all', array('conditions' => "last_name LIKE '%$search_param%'")); 
+                $friends_result = array_unique( array_merge($username_coincidences,array_merge( $email_coincidences,  array_merge($first_name_coincidences , $last_name_coincidences) )));
+            }
+            else 
+            {
+                $name=$search_params_array[0];
+                unset($search_params_array[0]);
+                $last_name= implode(" ",$search_params_array);
+                $first_and_last_name_coincidences= User::find('all', array('conditions' => "name LIKE '%".$name."%' AND last_name LIKE'%".$last_name."%'"));
+                $first_name_coincidences= User::find('all', array('conditions' => "name LIKE '%".$name."%'"));
+                $last_name_coincidences= User::find('all', array('conditions' => "last_name LIKE '%$last_name%'")); 
+                $friends_result = array_unique( array_merge($first_and_last_name_coincidences,array_merge( $first_name_coincidences , $last_name_coincidences )));
+            }
+            include 'app/views/default/modules/m.search_results.php';
+            $table = ob_get_clean();          
+            $pagina = $this->replace_content('/\#CONTENIDO\#/ms', $table , $pagina);           
+            $this->view_page($pagina);
         }
-        else 
+        else
         {
-            $name=$search_params_array[0];
-            unset($search_params_array[0]);
-            $last_name= implode(" ",$search_params_array);
-            $first_and_last_name_coincidences= User::find('all', array('conditions' => "name LIKE '%".$name."%' AND last_name LIKE'%".$last_name."%'"));
-            $first_name_coincidences= User::find('all', array('conditions' => "name LIKE '%".$name."%'"));
-            $last_name_coincidences= User::find('all', array('conditions' => "last_name LIKE '%$last_name%'")); 
-            $friends_result = array_unique( array_merge($first_and_last_name_coincidences,array_merge( $first_name_coincidences , $last_name_coincidences )));
+            $users=User::find('all');
+           $pagina=$this->load_template();
+            ob_start();                                          
+            include 'app/views/default/modules/m.adminreport.php';            
+            $table = ob_get_clean();
+            $pagina = $this->replace_content('/\#CONTENIDO\#/ms', $table , $pagina);                
+            $this->view_page($pagina);   
         }
-        include 'app/views/default/modules/m.search_results.php';
-        $table = ob_get_clean();          
-        $pagina = $this->replace_content('/\#CONTENIDO\#/ms', $table , $pagina);           
-        $this->view_page($pagina);
+
     }
     
     function change_password($current_pass,$new_pass,$pass_confirm)
