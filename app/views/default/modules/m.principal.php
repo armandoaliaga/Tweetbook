@@ -2,6 +2,7 @@
 include ("app/controller/mvc.security.php");
 ?>
 <LINK REL=StyleSheet HREF="app/views/default/css/focusPost.css" TYPE="text/css" MEDIA=screen>
+
 <div class="row" style="margin-top: 20px;">
     <div class="col-lg-11">
         <div class="panel panel-primary " style="border-color: #121212;" >
@@ -18,6 +19,11 @@ include ("app/controller/mvc.security.php");
     </div>
     </div>
   </div>
+
+<?php if(sizeof($status) ==0){?>
+<div style="height: 200px;">
+</div>
+<?php } ?>
 
 <?php
 foreach ($status as $post) {
@@ -39,7 +45,8 @@ foreach ($status as $post) {
             <div class="row">
                 <small style="margin-left: 15px; font-size: 10px; color: grey;"><?php echo $post->created_at->setTimezone(new DateTimezone('BOT'))->format("d-m-Y H:i:s"); ?></small>
             </div>
-        </div>        
+        </div>  
+              
       </div>   
             <div class="panel panel-default" style="margin: -1px;">
               <div class="panel-body"style="margin: -1px;">
@@ -55,7 +62,8 @@ foreach ($status as $post) {
                     </form>
                       </div>
               </div>
-            </div>  
+            </div>
+        
         <?php
 
     foreach ($post->comments as $comment) {?>        
@@ -84,10 +92,13 @@ foreach ($status as $post) {
                         <small><a onclick="return confirm('Esta seguro de elminar este comentario?!....')" href="index.php?action=deletecomment&commentid=<?php echo $comment->id; ?>">Eliminar</a></small>
                     <?php }?>
                         </div>
+                      
             </div>
               </div>
             </div>     
+        
         <?php } ?>    
+        
     </div>
 </div>
   <?php

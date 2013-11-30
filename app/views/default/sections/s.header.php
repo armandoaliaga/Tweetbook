@@ -28,9 +28,11 @@ session_start();
                         <li><button class="btn btn-primary" style="margin-left: 5px; margin-top: 1px; " href="#">Buscar</button></li>    
                     </ul>
                     </form> 
-                     <ul class="nav navbar-nav navbar-right">                         
+                     <ul class="nav navbar-nav navbar-right">    
+                         <?php if($_SESSION["current_user"]->username != "admin"){?>
                      <li><a href="index.php?action=userprofile&tab=wall&user=<?php echo $_SESSION["current_user"]->username; ?>">Perfil</a></li>
                     <li><a href="index.php?action=principal">Inicio</a></li>
+                    <?php }?>
                     <li class="dropdown">
                         <?php 
                             $email = $_SESSION["current_user"]->email;                            
@@ -39,11 +41,7 @@ session_start();
                         ?>
                       <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="<?php echo $grav_url; ?>"/>
 <?php echo $_SESSION["current_user"]->username;?> <b class="caret"></b></a>
-                      <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li class="divider"></li>
+                      <ul class="dropdown-menu">                                                
                         <li><a href="index.php?action=logout">Salir</a></li>
                       </ul>
                     </li>

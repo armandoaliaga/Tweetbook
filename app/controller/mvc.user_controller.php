@@ -24,23 +24,37 @@ class user_cotroller extends generic_controller
             session_start();
             $_SESSION["autentificado"]= "SI";
             $_SESSION["current_user"]=$usuario[0];
-             $status=  Post::find('all', array('order' => 'created_at desc'));$status=  Post::find_all_by_to_user_id($_SESSION["current_user"]->id);          
-          $seguidores=Follow::find_all_by_followed_user_id($_SESSION["current_user"]->id);          
-          foreach($seguidores as $seguidor)
-          {              
-              $aux=Post::find_all_by_from_user_id($seguidor->follower_user_id);
-              $status=array_merge($status, $aux);
-          }
-          usort($status, function($a, $b)
+            
+            if($_SESSION["current_user"]->username!="admin")
             {
-                if($a->created_at< $b->created_at){return true;}else{return false;} ;
-            });   
-            $pagina=$this->load_template();
-            ob_start();                                          
-            include 'app/views/default/modules/m.principal.php';            
-            $table = ob_get_clean();
-            $pagina = $this->replace_content('/\#CONTENIDO\#/ms', $table , $pagina);                
-            $this->view_page($pagina);   
+                $status=  Post::find('all', array('order' => 'created_at desc'));$status=  Post::find_all_by_to_user_id($_SESSION["current_user"]->id);          
+               $seguidores=Follow::find_all_by_followed_user_id($_SESSION["current_user"]->id);          
+               foreach($seguidores as $seguidor)
+               {              
+                   $aux=Post::find_all_by_from_user_id($seguidor->follower_user_id);
+                   $status=array_merge($status, $aux);
+               }
+               usort($status, function($a, $b)
+                 {
+                     if($a->created_at< $b->created_at){return true;}else{return false;} ;
+                 });   
+                 $pagina=$this->load_template();
+                 ob_start();                                          
+                 include 'app/views/default/modules/m.principal.php';            
+                 $table = ob_get_clean();
+                 $pagina = $this->replace_content('/\#CONTENIDO\#/ms', $table , $pagina);                
+                 $this->view_page($pagina);   
+            }
+            else
+            {
+                $users=User::find('all');
+                $pagina=$this->load_template();
+                 ob_start();                                          
+                 include 'app/views/default/modules/m.adminreport.php';            
+                 $table = ob_get_clean();
+                 $pagina = $this->replace_content('/\#CONTENIDO\#/ms', $table , $pagina);                
+                 $this->view_page($pagina);   
+            }
          }  
          else
          {
@@ -50,23 +64,35 @@ class user_cotroller extends generic_controller
                session_start();
                $_SESSION["autentificado"]= "SI";              
                $_SESSION["current_user"]=$usuario[0];
-               $status=  Post::find_all_by_to_user_id($_SESSION["current_user"]->id);          
-          $seguidores=Follow::find_all_by_followed_user_id($_SESSION["current_user"]->id);          
-          foreach($seguidores as $seguidor)
-          {              
-              $aux=Post::find_all_by_from_user_id($seguidor->follower_user_id);
-              $status=array_merge($status, $aux);
-          }
-          usort($status, function($a, $b)
-            {
-                if($a->created_at< $b->created_at){return true;}else{return false;} ;
-            });   
-               $pagina=$this->load_template();
-               ob_start();                                          
-               include 'app/views/default/modules/m.principal.php';            
-               $table = ob_get_clean();
-               $pagina = $this->replace_content('/\#CONTENIDO\#/ms', $table , $pagina);            
-               $this->view_page($pagina);   
+               if($_SESSION["current_user"]->username!="admin")
+                {
+                        $status=  Post::find_all_by_to_user_id($_SESSION["current_user"]->id);          
+                   $seguidores=Follow::find_all_by_followed_user_id($_SESSION["current_user"]->id);          
+                   foreach($seguidores as $seguidor)
+                   {              
+                       $aux=Post::find_all_by_from_user_id($seguidor->follower_user_id);
+                       $status=array_merge($status, $aux);
+                   }
+                   usort($status, function($a, $b)
+                     {
+                         if($a->created_at< $b->created_at){return true;}else{return false;} ;
+                     });   
+                        $pagina=$this->load_template();
+                        ob_start();                                          
+                        include 'app/views/default/modules/m.principal.php';            
+                        $table = ob_get_clean();
+                        $pagina = $this->replace_content('/\#CONTENIDO\#/ms', $table , $pagina);            
+                        $this->view_page($pagina);  
+                }
+                else
+                {
+                    $pagina=$this->load_template();
+                     ob_start();                                          
+                     include 'app/views/default/modules/m.adminreport.php';            
+                     $table = ob_get_clean();
+                     $pagina = $this->replace_content('/\#CONTENIDO\#/ms', $table , $pagina);                
+                     $this->view_page($pagina);   
+                }
             } 
             else {    
                 session_start();
@@ -121,26 +147,40 @@ class user_cotroller extends generic_controller
     
     function principal()
     {
-         $pagina=$this->load_template();
-          ob_start(); 
-          
-          $status=  Post::find_all_by_to_user_id($_SESSION["current_user"]->id);          
-          $seguidores=Follow::find_all_by_followed_user_id($_SESSION["current_user"]->id);          
-          foreach($seguidores as $seguidor)
-          {              
-              $aux=Post::find_all_by_from_user_id($seguidor->follower_user_id);
-              $status= array_merge($status, $aux);
-          }
-          usort($status, function($a, $b)
-            {
-                if($a->created_at< $b->created_at){return true;}else{return false;} ;
-            });
-            $status=array_unique($status);
-           #$status=  Post::find('all', array('order' => 'created_at desc'));        
-          include 'app/views/default/modules/m.principal.php';                               
-          $table = ob_get_clean();
-         $pagina = $this->replace_content('/\#CONTENIDO\#/ms', $table , $pagina);              
-         $this->view_page($pagina);       
+        session_start();
+        if($_SESSION["current_user"]->username!="admin")
+        {
+            $pagina=$this->load_template();
+             ob_start(); 
+
+             $status=  Post::find_all_by_to_user_id($_SESSION["current_user"]->id);          
+             $seguidores=Follow::find_all_by_followed_user_id($_SESSION["current_user"]->id);          
+             foreach($seguidores as $seguidor)
+             {              
+                 $aux=Post::find_all_by_from_user_id($seguidor->follower_user_id);
+                 $status= array_merge($status, $aux);
+             }
+             usort($status, function($a, $b)
+               {
+                   if($a->created_at< $b->created_at){return true;}else{return false;} ;
+               });
+               $status=array_unique($status);
+              #$status=  Post::find('all', array('order' => 'created_at desc'));        
+             include 'app/views/default/modules/m.principal.php';                               
+             $table = ob_get_clean();
+            $pagina = $this->replace_content('/\#CONTENIDO\#/ms', $table , $pagina);              
+            $this->view_page($pagina);   
+        }
+        else
+        {
+             $users=User::find('all');
+            $pagina=$this->load_template();
+             ob_start();                                          
+             include 'app/views/default/modules/m.adminreport.php';            
+             $table = ob_get_clean();
+             $pagina = $this->replace_content('/\#CONTENIDO\#/ms', $table , $pagina);                
+             $this->view_page($pagina);   
+        }
     }
     
     function user_info()

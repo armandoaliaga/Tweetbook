@@ -16,13 +16,14 @@
    <div class="row">
        <label style="margin-left: 15px;"><?php echo $_SESSION["current_user"]->name." ".$_SESSION["current_user"]->last_name;  ?></label>
    </div>
+   <?php if($_SESSION["current_user"]->username != "admin"){?>
        <div class="bs-example" style="margin-top: 20px;">
-                 <ul class="nav nav-pills nav-stacked" style="max-width: 300px;">
+                 <ul class="nav nav-pills nav-stacked" style="max-width: 300px;">                     
                    <li id="home-option"><a href="index.php?action=principal">Home</a></li>
                    <li id="profile-option"><a href="index.php?action=userprofile&tab=wall&user=<?php echo $_SESSION["current_user"]->username; ?>">Profile</a></li>                
                  </ul>
        </div>
-
+<?php }?>
 
  <?php }}else{                     
            $email = User::find_by_username($_GET['user'])->email;                            
