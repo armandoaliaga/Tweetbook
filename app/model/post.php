@@ -8,5 +8,8 @@ class Post extends ActiveRecord\Model
         static $has_many = array(
         array('comments')
         );
+        public function __toString() {
+                return "".$this->id;
+            }
 }
 ?>

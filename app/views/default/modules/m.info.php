@@ -19,6 +19,43 @@ include ("app/controller/mvc.security.php");
 </div>
 </div>
 
+
+<?php
+//mostrar mensaje de success al registro
+if(isset($_SESSION['success']))
+{
+?>
+<div class="row">
+    <div class="col-lg-8">
+        <div class="alert alert-dismissable alert-success">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          <strong>Exito!</strong> <?php echo $_SESSION['success']; ?>
+        </div>
+      </div>
+</div>
+<?php
+ unset($_SESSION['success']);
+}
+?>
+<?php
+//mostrar mensaje de error de contraseñas
+if(isset($_SESSION['error_passwords']))
+{?>
+<div class="row">
+          <div class="col-lg-8">
+            <div class="alert alert-dismissable alert-danger">
+              <button type="button" class="close" data-dismiss="alert">×</button>
+              <ul>
+                  <li><strong><?php echo $_SESSION['error_passwords']; ?></strong></li>
+              </ul>
+            </div>
+          </div>          
+        </div>
+<?php
+unset($_SESSION['error_passwords']);
+}?>
+
+
 <script>
     function change()
     {
@@ -30,6 +67,17 @@ include ("app/controller/mvc.security.php");
         document.getElementById("editar").style.display='none';
         document.getElementById("mostrar").style.display='inline';
     }
+    
+    function edit_password()
+    {
+        document.getElementById("mostrar").style.display='none';
+        document.getElementById("editPass").style.display='inline';
+    }
+    function cancel_pass()
+    {
+        document.getElementById("editPass").style.display='none';
+        document.getElementById("mostrar").style.display='inline';
+    }
 </script>
 
 <div class="row" id="mostrar">
@@ -37,7 +85,18 @@ include ("app/controller/mvc.security.php");
     <div class="row">             
              <div class="col-lg-10"><H2><img width="42" src="app/views/default/images/person.png" />&nbsp;Informacion</H2></div>
              <?php if($user->id == $_SESSION["current_user"]->id){?>
-             <div class="pager col-lg-2"><li><a href="#" onclick="change();" style="height:30px;width: 30px; padding: 5px 0px 5px 0px;"><img width="20" src="app/views/default/images/edit.png"></a></li></div>
+             <div class="pager col-lg-2 ">             
+                <ul class="nav navbar-nav navbar-right ">
+                <li class="dropdown">                                    
+                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img width="20" src="app/views/default/images/edit.png"></a>
+                   <ul class="dropdown-menu">
+                       <a href="#" onclick="change();">Editar Perfil</a><br>
+                      <a href="#" onclick="edit_password();">Cambiar Contraseña</a>
+                   </ul>
+               </li>
+               </ul>                                      
+            </div>
+             
              <?php }?>
     </div>
     <div class="well">         
@@ -93,7 +152,9 @@ include ("app/controller/mvc.security.php");
           <div class="form-group">
             <label for="inputDate" class="col-lg-4 control-label">Fecha Nacimiento :</label>
             <div class="col-lg-8">
-                <div style="margin-top: 11px;"><?php echo $user->birthday->format('d-m-Y') ?></div>
+                <?php if($user->birthday != ""){?>
+                    <div style="margin-top: 11px;"><?php echo $user->birthday->format('d-m-Y') ?></div>
+                <?php }?>
             </div>
            </div>                                          
         </fieldset>
@@ -107,7 +168,7 @@ include ("app/controller/mvc.security.php");
 <div class="row" id="editar" style="display: none;">
 <div class="col-lg-11">
      <div class="row">             
-             <div class="col-lg-10"><H2><img width="42" src="app/views/default/images/person.png" />&nbsp;Informacion</H2></div>           
+             <div class="col-lg-10"><H2><img width="42" src="app/views/default/images/person.png" />&nbsp;Editar Perfil</H2></div>           
          </div>  
     <div class="well">            
        <form class="bs-example form-horizontal" action="index.php" method="post">
@@ -206,7 +267,7 @@ include ("app/controller/mvc.security.php");
           <div class="form-group">
             <label for="inputDate" class="col-lg-3 control-label">Fecha Nacimiento</label>
             <div id="datetimepicker4" class="input-append input-group col-lg-8">
-              <input class="form-control input-append" value="<?php echo $user->birthday->format('d-m-Y') ?>"style="width:351px;" data-format="dd-MM-yyyy" type="text" name="new_birthday"></input>
+              <input class="form-control input-append" value="<?php if ($user->birthday != ""){ echo $user->birthday->format('d-m-Y'); }?>"style="width:351px;" data-format="dd-MM-yyyy" type="text" name="new_birthday"></input>
               <span class="add-on btn input-group-btn" >
                <i data-date-icon="icon-calendar icon-white">
                 </i>
@@ -234,3 +295,43 @@ include ("app/controller/mvc.security.php");
   });
   
 </script>
+
+
+<div class="row" style="display: none" id="editPass">
+<div class="col-lg-12">
+    <div class="row">             
+             <div class="col-lg-10"><H2><img width="42" src="app/views/default/images/person.png" />&nbsp;Editar Contraseña</H2></div>           
+         </div>
+    <div class="well">
+      <form class="bs-example form-horizontal" action="index.php" method="post">          
+        <fieldset>          
+         
+          <div class="form-group">
+              <label for="inputPassword" class="col-lg-3 control-label">* Contraseña Actual</label>
+            <div class="col-lg-9">
+                <input type="password" name="current_password" cannot-be-blank class="form-control" id="inputPassword" placeholder="Contraseña" required maxlength="25">           
+            </div>
+          </div> 
+          <div class="form-group">
+              <label for="inputPassword" class="col-lg-3 control-label">* Nueva Contraseña</label>
+            <div class="col-lg-9">
+                <input type="password" name="new_password" cannot-be-blank class="form-control" id="inputPassword" placeholder="Contraseña" required maxlength="25">           
+            </div>
+          </div>  
+           <div class="form-group">
+              <label for="inputPassword" class="col-lg-3 control-label">* Contraseña de confirmacion</label>
+            <div class="col-lg-9">
+                <input type="password" name="password_confirmation" class="form-control" id="inputPassword" placeholder="Contraseña de confirmacion" required maxlength="25">           
+            </div>
+          </div>  
+                  
+          <div class="form-group">
+            <div class="col-lg-9 col-lg-offset-3">
+                <button type="button" class="btn btn-default" onclick="cancel_pass();">Cancel</button> 
+              <button type="submit" class="btn btn-primary">Cambiar Contraseña</button> 
+            </div>        
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>  

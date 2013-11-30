@@ -129,12 +129,13 @@ class user_cotroller extends generic_controller
           foreach($seguidores as $seguidor)
           {              
               $aux=Post::find_all_by_from_user_id($seguidor->follower_user_id);
-              $status=array_merge($status, $aux);
+              $status= array_merge($status, $aux);
           }
           usort($status, function($a, $b)
             {
                 if($a->created_at< $b->created_at){return true;}else{return false;} ;
             });
+            $status=array_unique($status);
            #$status=  Post::find('all', array('order' => 'created_at desc'));        
           include 'app/views/default/modules/m.principal.php';                               
           $table = ob_get_clean();
@@ -164,6 +165,7 @@ class user_cotroller extends generic_controller
         $user->relationship_status=$datos['relationship_status'];
         $user->birthday=$datos['birthday'];
         $user->save();
+         $_SESSION['success']="La contraseña fue cambiada con exito!";
         $_SESSION["current_user"]=$user;
         ob_start();  
         $pagina=$this->load_template();       
@@ -205,6 +207,39 @@ class user_cotroller extends generic_controller
         $pagina = $this->replace_content('/\#CONTENIDO\#/ms', $table , $pagina);           
         $this->view_page($pagina);
     }
+    
+    function change_password($current_pass,$new_pass,$pass_confirm)
+    {
+        session_start();
+        $user= User::find_by_id($_SESSION["current_user"]->id);
+        $key_value = "KEYVALUE";         
+	$passenc= mcrypt_ecb(MCRYPT_DES, $key_value, $current_pass, MCRYPT_ENCRYPT);    
+        if($user->password == $passenc)
+        {
+            if($new_pass==$pass_confirm)
+            {
+                $new= mcrypt_ecb(MCRYPT_DES, $key_value, $new_pass, MCRYPT_ENCRYPT);    
+                $user->password=$new;
+                $user->save();
+                $_SESSION['success']="La contraseña fue cambiada con exito!";
+            }
+            else
+            {
+                $_SESSION['error_passwords']="Las contraseñas no coinciden!";
+            }
+        }
+        else
+        {
+            $_SESSION['error_passwords']="La contraseña actual no es correcta!";
+        }     
+        ob_start();  
+        $pagina=$this->load_template();       
+        include 'app/views/default/modules/m.info.php';
+        $register = ob_get_clean();  
+        $pagina = $this->replace_content('/\#CONTENIDO\#/ms', $register , $pagina);          
+        $this->view_page($pagina);     
+    }
+    
 }
 
 ?>

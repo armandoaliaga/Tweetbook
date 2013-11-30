@@ -13,6 +13,9 @@
            ?>
 
    <a href="https://es.gravatar.com" target="_blank" id="changephoto" data-toggle="tooltip" data-placement="left" title="" data-original-title="Cambiar imagen"><img src="<?php echo $grav_url; ?>" style="margin-top: 15px;"/></a>
+   <div class="row">
+       <label style="margin-left: 15px;"><?php echo $_SESSION["current_user"]->name." ".$_SESSION["current_user"]->last_name;  ?></label>
+   </div>
        <div class="bs-example" style="margin-top: 20px;">
                  <ul class="nav nav-pills nav-stacked" style="max-width: 300px;">
                    <li id="home-option"><a href="index.php?action=principal">Home</a></li>

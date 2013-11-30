@@ -28,10 +28,12 @@ class generic_controller {
     ob_start();
     $pagina = $this->load_page('app/views/default/page.php');
     //$header = $this->load_page('app/views/default/sections/s.header.php');
+    ob_start();
     include 'app/views/default/sections/s.header.php';
     $header = ob_get_clean();
     $pagina = $this->replace_content('/\#HEADER\#/ms' ,$header , $pagina);    
     //$menu_left = $this->load_page('app/views/default/sections/s.menuizquierda.php');
+    ob_start();
     include 'app/views/default/sections/s.menuizquierda.php';
     $menu_left= ob_get_clean();
     $pagina = $this->replace_content('/\#MENULEFT\#/ms' ,$menu_left , $pagina);

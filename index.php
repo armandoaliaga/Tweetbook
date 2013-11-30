@@ -98,6 +98,10 @@ require 'app/controller/mvc.follow_controller.php';
  {
     $mvc_user->search_friends($_POST['search_param']);
  }
+ else if( isset($_POST['current_password']) &&  isset($_POST['new_password']) &&  isset($_POST['password_confirmation'])) 
+ {
+    $mvc_user->change_password($_POST['current_password'],$_POST['new_password'],$_POST['password_confirmation']);
+ }
  else //Si no existe GET o POST -> muestra la pagina principal
  {     
     $mvc_user->register();  
