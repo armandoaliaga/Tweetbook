@@ -3,8 +3,24 @@ include ("app/controller/mvc.security.php");
 ?>
 <LINK REL=StyleSheet HREF="app/views/default/css/focusPost.css" TYPE="text/css" MEDIA=screen>
 <div class="row">
-<div class="page-header col-lg-11">
-    <h1 id="type"><?php echo $user->name." ".$user->last_name ?></h1>
+<div class="page-header col-lg-11">    
+    <h1 id="type"><?php echo $user->name." ".$user->last_name ?>
+    <?php if(Follow::find_by_follower_user_id_and_followed_user_id($user->id,$_SESSION["current_user"]->id) && !Follow::find_by_follower_user_id_and_followed_user_id($_SESSION["current_user"]->id,$user->id)) {}else{?>                        
+        <?php if($user->id!=$_SESSION["current_user"]->id ){ ?>
+        <ul class="nav navbar-nav navbar-right ">
+            <li class="dropdown">                                    
+               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><img width="20" src="app/views/default/images/settings.png"></a>
+               <ul class="dropdown-menu">
+                    <form action="index.php" method="post">
+                        <input type="hidden" name="no_follower_id" value="<?php echo $_SESSION["current_user"]->id ?>">
+                        <input type="hidden" name="no_followed_id" value="<?php echo $user->id ?>">
+                      <button class="btn btn-primary" type="submit">Dejar de perseguir a <?php echo $user->name?> <span style="margin-left: 10px; margin-top: -40px;"><img width="35" src="app/views/default/images/pluma.png"></span></button> 
+                   </form>                  
+               </ul>
+           </li>
+        </ul>
+    <?php }}?></h1>    
+    
   </div>
 </div>
 <?php  if( $user->id==$_SESSION["current_user"]->id ||Follow::find_by_follower_user_id_and_followed_user_id($user->id,$_SESSION["current_user"]->id)) {?>
@@ -53,7 +69,7 @@ include ("app/controller/mvc.security.php");
         <div class=" col-lg-11">        
             <div class="panel panel-default" style="margin: -1px; margin-top: 30px;">
                 <div class="panel-heading" style="background-color: #d1d1d1;">
-                    <img src="<?php echo $grav_url; ?>"/>&nbsp;&nbsp;&nbsp;<?php echo "<label style='font-size:20px;'><a href='index.php?action=userprofile&tab=wall&user=".$usuario->username."'>".$usuario->username."</a></label>"?><?php if($post->from_user_id == $_SESSION["current_user"]->id){?><a title="Eliminar" onclick="return confirm('Esta seguro de elminar este estado?!....')" href="index.php?action=deletepost&postid=<?php echo $post->id?>" class='pull-right'><img width="25px" src="app/views/default/images/delete.png"></a> <?php }?>
+                    <img src="<?php echo $grav_url; ?>"/>&nbsp;&nbsp;&nbsp;<?php echo "<label style='font-size:20px;'><a href='index.php?action=userprofile&tab=wall&user=".$usuario->username."'>".$usuario->username."</a></label>"?><?php if($post->from_user_id == $_SESSION["current_user"]->id || $post->to_user_id ==$_SESSION["current_user"]->id  ){?><a title="Eliminar" onclick="return confirm('Esta seguro de elminar este estado?!....')" href="index.php?action=deletepost&postid=<?php echo $post->id?>" class='pull-right'><img width="25px" src="app/views/default/images/delete.png"></a> <?php }?>
                 </div>            
             <div class="panel-body">                        
                 <div class="row">

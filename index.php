@@ -90,6 +90,10 @@ require 'app/controller/mvc.follow_controller.php';
  {
         $mvc_follow->save_follow($_POST['follower_id'],$_POST['followed_id']);     
  }
+  else if( isset($_POST['no_follower_id']) && isset($_POST['no_followed_id'])) 
+ {
+        $mvc_follow->delete_follow($_POST['no_follower_id'],$_POST['no_followed_id']);     
+ }
  else if( isset($_POST['new_name']) && isset($_POST['new_last_name']) )
  {
          $mvc_user->editUser(array('name'=>$_POST['new_name'],'last_name'=>$_POST['new_last_name'],'gender'=>$_POST['new_gender'],'city'=>$_POST['new_city'],'relationship_status'=>$_POST['new_relationship'],'birthday'=>$_POST['new_birthday']));     
