@@ -11,7 +11,7 @@ if($environment=="development")
 else if ($environment=="production")
 {
     $GLOBALS['db_name'] = 'tweetbook';
-    $GLOBALS['db_host'] = '185.28.20.60';
+    $GLOBALS['db_host'] = 'mysql.hostinger.es';
     $GLOBALS['db_user'] = 'u827889968_tweet';
     $GLOBALS['db_password'] = 'tweetbook1234';
 }
