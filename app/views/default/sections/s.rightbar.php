@@ -9,7 +9,7 @@ if(isset($_SESSION["current_user"]))
     {
     ?>
     <h5><b>Te persiguen...</b></h5>
-    <div class="list-group"  style="overflow-y: auto; height: 320px;">  
+    <div class="list-group"  style="overflow-y: auto; height: 320px; border: 1px solid #DDDDDD;">  
     <?php
     }
         foreach ($followers as $follow) {
