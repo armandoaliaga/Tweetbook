@@ -49,13 +49,20 @@ include ("app/controller/mvc.security.php");
                                 echo "<div class='panel panel-default' style='height:190px; width:160px;'>";
                                     echo "<div class='panel-body'>";
                                         echo "<div style='height:127px; width:127px;border-style:solid;border-width:1px;border-color:#DDDDDD;'>";
-                                        if(isset($album->photos[0]))
+                                        if(isset($album->photos[0]) )
                                         {
-                                            echo "<a href='index.php?action=userprofile&user=".$user->username."&tab=photo&album=".$album->id."'><img style='width: 125px;height: 125px;overflow: hidden;'' src='".$album->photos[0]->url()."' /></a>";
+                                            echo "<a href='index.php?action=userprofile&user=".$user->username."&tab=photo&album=".$album->id."'><img style='width: 125px;height: 125px;overflow: hidden;'' src='".$album->photos[0]->url()."' /></a>";   
                                         }
                                         else
                                         {
-                                            echo "<a style='margin-top:25px;margin-left:25px;' href='index.php?action=userprofile&user=".$user->username."&tab=photo&album=".$album->id."'>+ Agregar fotos</a>";
+                                            if($user->id==$_SESSION["current_user"]->id)
+                                            { 
+                                                echo "<a style='margin-top:25px;margin-left:25px;' href='index.php?action=userprofile&user=".$user->username."&tab=photo&album=".$album->id."'>+ Agregar fotos</a>";                                      
+                                            }
+                                            else
+                                            {
+                                                echo "<small>Este album no tiene fotos...</small>";
+                                            }
                                         }
                                         echo "</div>";
                                         echo "<a href='index.php?action=userprofile&user=".$user->username."&tab=photo&album=".$album->id."'>".$album->name."</a><br>";

@@ -65,8 +65,10 @@ include ("app/controller/mvc.security.php");
                             $url=$photo->url();
                                 echo "<div style='height:162px; width:162px;border-style:solid;border-width:1px;border-color:#DDDDDD;".($cols==1?"margin-left:20px;":"")." margin:10px;' >";
                                     echo "<a class='fancybox' data-fancybox-group='gallery' href='$url'><img class='image-container' onmouseover='showDelete($num_id)' onmouseout='hideDelete($num_id)' style='width: 160px;height: 160px;overflow: hidden;' src='".$url."' /></a>";
+                                    if( $user->id==$_SESSION["current_user"]->id) {
                                     echo"<img id='$num_id' class='star-button' onclick='deleteImage(".$photo->id.")'  onmouseover='showDelete($num_id)' title='Eliminar foto'  src='app/views/default/images/delete.png' />";
-                                echo "</div>";
+                                    }
+                                    echo "</div>";
                             echo "</div>";
                         if($cols==3)
                         {
